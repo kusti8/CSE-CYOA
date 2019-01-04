@@ -4,18 +4,24 @@ def parse_input(text):
         'walk': ['move', 'run', 'jog'],
         'sleep': ['dream'],
         'dig': [],
-        'examine': ['look', 'check'],
-        'eat': ['drink']
+        'examine': ['look', 'check', 'read'],
+        'eat': ['drink'],
+        'get': ['get', 'retrieve', 'collect', 'take'],
+        'move': ['displace'],
+        'remove': ['return', 'throw'],
+        'flip': []
     }
     nouns = {
         'left': ['west'],
         'right': ['right'],
         'cot': ['bed'],
-        'painting': ['picture', 'Kim', 'drawing'],
-        'schedule': ['paper', 'sheet'],
-        'bowls': ['kibble', 'food', 'drink', 'water', 'juice'],
+        'A very special painting': ['picture', 'Kim', 'drawing', 'painting'],
+        'schedule': [],
+        'note': ['paper', 'sheet'],
+        'bowl': ['kibble', 'food', 'drink', 'water', 'juice', 'bowls'],
         'floor': ['ground'],
-        'door': []
+        'door': [],
+        'inventory': []
     }
     tokenized = text.strip().split()
     out = {'action': '', 'object': ''}
