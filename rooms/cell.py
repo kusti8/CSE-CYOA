@@ -84,7 +84,6 @@ cell_options = {
     'dig': dig_hole,
     'examine': examine,
     'get': get,
-    'eat': eat,
     'move': move_painting,
     'flip': flip,
     'open': open_item

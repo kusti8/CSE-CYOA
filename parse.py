@@ -13,7 +13,8 @@ def parse_input(text):
         'flip': [],
         'open': [],
         'go': ['goto' 'walk', 'walkto','travel'],
-        'talk': ['converse']
+        'talk': ['converse'],
+        'play': []
     }
     nouns = {
         'cell': {

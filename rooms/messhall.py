@@ -1,5 +1,6 @@
 import state
 import common_actions
+import tetris
 
 def welcome():
     state.state['sub_location'] = 'tables'
@@ -46,8 +47,15 @@ def talk(obj):
     else:
         out += 'The man grunts and turns away.'
     return out
+
+def play(obj):
+    game = tetris.Game()
+    game.start()
+    return "You got " + str(game.score)
+
 messhall_options = {
     'get': get,
     'go': go,
-    'talk': talk
+    'talk': talk,
+    'play': play
 }
