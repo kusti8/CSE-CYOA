@@ -1,6 +1,8 @@
 import rooms.cell as cell
+import rooms.messhall as messhall
 import parse
 import state
+import common_actions
 
 print('\nPrison Escape!')
 print('Copyright (c) 2018, 2019 Justin Diament and Gustav Hansen. All rights reserved.')
@@ -11,7 +13,22 @@ print('Slam! A guard slams your cell door shut. Welcome to Yodok Concentration C
 print('You face the back wall of the cell. An undersized cot is to your left, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you. ')
 print('On the wall to the right is a weekly schedule, written in English. Below that on the floor is are bowls of food and water. The floor is well-packed dirt.')
 
-while not state.state['dead']:
-    obj = parse.parse_input(input('> '))
+def cell_options(obj):
     if state.state['location'] == 'cell':
         print(cell.cell_options[obj['action']](obj))
+    elif state.state['location'] == 'messhall':
+        print(messhall.messhall_options[obj['action']](obj))
+
+while not state.state['dead']:
+    obj = parse.parse_input(input('> '))
+    try:
+        if obj['action'] in common_actions.common_options.keys():
+            result = common_actions.common_options[obj['action']](obj)
+            if not result:
+                cell_options(obj)
+            else:
+                print(result)
+        else:
+            cell_options(obj)
+    except KeyError:
+        print("Unknown command.")

@@ -10,7 +10,8 @@ def parse_input(text):
         'move': ['displace'],
         'remove': ['return', 'throw'],
         'flip': [],
-        'open': []
+        'open': [],
+        'go': ['goto' 'walk', 'walkto','travel']
     }
     nouns = {
         'left': ['west'],
@@ -22,7 +23,9 @@ def parse_input(text):
         'bowl': ['kibble', 'food', 'drink', 'water', 'juice', 'bowls'],
         'floor': ['ground'],
         'door': [],
-        'inventory': []
+        'inventory': [],
+        'buffet': [],
+        'book': ['books', 'library', 'shelf']
     }
     tokenized = text.strip().split()
     out = {'action': '', 'object': ''}

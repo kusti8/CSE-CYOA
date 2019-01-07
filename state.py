@@ -7,5 +7,6 @@ state = {
     'painting_got': False,
     'execution_posted': False,
     'bowl_flipped': False,
-    'location': 'cell'
+    'location': 'cell',
+    'sub_location': 'tables' # Can be tables, buffet
 }

@@ -1,4 +1,4 @@
 Cell - to corridor
 Bathroom
 Messhall
-Infirmary
+Recreaction
