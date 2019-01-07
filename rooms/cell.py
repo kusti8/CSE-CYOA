@@ -9,7 +9,7 @@ def every_turn_cell():
     out = ''
     if 'A very special painting' in state.state['inventory']:
         out += '\nA guard notices you have removed and disrespected the painting of His Greatness Kim Jong Un. You are killed immediately. \n\n'
-        out += quit()
+        out += common_actions.game_quit()
     if state.state['bowl_flipped'] and common_actions.get_weekday(state.state['day']) == 'Thursday':
       out += '\nA man walked by your cell and whispers something:\n\t'
       out += 'An item, you need. Go through the ground, you must.'

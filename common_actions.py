@@ -24,7 +24,7 @@ def remove_from_inventory(item):
         state.state['inventory'].remove(item)
         return "You have removed " + item + " from your inventory." 
 
-def quit():
+def game_quit():
     state.state['dead'] = True
     return "\nYou have died."
     
@@ -32,7 +32,6 @@ def get_weekday(day_num):
     return days[day_num % 7]
     
 def increment_day(obj, num=1):
-    print(num)
     state.state['day'] = state.state['day'] + num
     weekday = get_weekday(state.state['day'])
     out = "It is now %s day %d." % (weekday, state.state['day'])

@@ -1,4 +1,5 @@
 import state
+import common_actions
 
 def welcome():
     state.state['sub_location'] = 'tables'
@@ -6,15 +7,22 @@ def welcome():
 
 def get(obj):
     if obj['object'] == 'food' and state.state['sub_location'] == 'buffet':
-        return 'You are given a bowl of some sus.'
+        out = common_actions.add_to_inventory('food')
+        return out
     if obj['object'] == 'spoon' and state.state['sub_location'] == 'buffet':
-        
-        return 'You acquire a spoon. Very useful in a prison.'
+        out = common_actions.add_to_inventory('spoon')
+        return out + '. Very useful in a prison.'
+
+def examine(obj):
+    if obj['object'] == 'food' and 'food' in state.state['inventory']:
+        return 'Mystery flavor. Probably chicken but who knows. Beats kibble though.'
+    if obj['object'] == 'spoon' and 'soup' in state.state['inventory']:
+        return 'Made of metal for some reason. Oddly large. Seems like a liability in a maximum security prison'
 
 def go(obj):
     if obj["object"] == 'buffet':
         state.state['sub_location'] = 'buffet'
-        return 'The buffet looks very appitizing compared to the kibble. There is also a place to take silverware for civilized eating, but not all inmates do\n. A drink machine labeled with recognizable soda brands is next to the silverware.'
+        return 'The buffet looks very appitizing compared to the kibble. There is also a place to take silverware for civilized eating, but not all inmates do.\n A drink machine labeled with recognizable soda brands is next to the silverware.'
     if obj["object"] == 'books':
         state.state['sub_location'] = 'library'
         return 'The books on the top shelf are labeled American classics. Copies of Huckleberry Finn, The Great Gatsby, and Trump: The Art of the Deal are all that remain'
