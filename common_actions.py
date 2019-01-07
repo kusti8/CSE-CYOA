@@ -71,8 +71,14 @@ def remove(obj):
 def get(obj):
     if obj['object'] == 'inventory':
         return get_inventory(obj)
+        
+def eat(obj):
+    state.state['last_day_eaten'] = state.state['day']
+    remove_from_inventory('food')
+    return 'You eat some food. Another day of not going hungry.'
     
 common_options = {
     'get': get,
-    'remove': remove
+    'remove': remove,
+    'eat': eat
 }

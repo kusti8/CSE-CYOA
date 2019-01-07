@@ -12,8 +12,8 @@ def parse_input(text):
         'remove': ['return', 'throw'],
         'flip': [],
         'open': [],
-        
-        'go': ['goto' 'walk', 'walkto','travel']
+        'go': ['goto' 'walk', 'walkto','travel'],
+        'talk': ['converse']
     }
     nouns = {
         'cell': {

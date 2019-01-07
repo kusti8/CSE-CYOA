@@ -66,15 +66,14 @@ def get_painting(obj):
 def get(obj):
     if obj['object'] == 'A very special painting':
         return get_painting(obj)
+    if obj['object'] == 'food':
+        out = 'You cautiously pick up the bowl of "food".\nYou examine it. It seems to be dog kibble.'
+        return out + common_actions.add_to_inventory('food')
 
 def flip(obj):
   if obj['object'] == 'bowl':
     state.state['bowl_flipped'] = True
     return 'You flipped the bowl. Now all you have to do is wait until Thursday.'
-
-def eat(obj):
-    state.state['last_day_eaten'] = state.state['day']
-    return 'You cautiously pick up the bowl of "food".\nYou examine it. It seems to be dog kibble. You question your life choices, and take a bite of the kibble.\n\nIt was exactly as bad as you thought it would be. You down it with some old apple juice.'
 
 def open_item(obj):
     if obj['object'] == 'door':
