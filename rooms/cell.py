@@ -137,6 +137,10 @@ def eat(obj):
 def remove(obj):
     return remove_from_inventory(obj['object'])
 
+def open_item(obj):
+    if obj['object'] == 'door':
+        return "Cannot open the door. It is locked"
+
 cell_options = {
     'sleep': increment_day,
     'dig': dig_hole,
@@ -145,5 +149,6 @@ cell_options = {
     'eat': eat,
     'move': move_painting,
     'remove': remove,
-    'flip': flip
+    'flip': flip,
+    'open': open_item
 }

@@ -1,4 +1,4 @@
-import cell
+import rooms.cell as cell
 import parse
 import state
 

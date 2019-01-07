@@ -9,7 +9,8 @@ def parse_input(text):
         'get': ['get', 'retrieve', 'collect', 'take'],
         'move': ['displace'],
         'remove': ['return', 'throw'],
-        'flip': []
+        'flip': [],
+        'open': []
     }
     nouns = {
         'left': ['west'],
