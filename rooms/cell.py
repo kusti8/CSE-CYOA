@@ -1,6 +1,7 @@
 import collections
 import state
 import rooms.messhall
+import rooms.bathroom
 import common_actions
 
 ################ACTION FUNCTIONS################
@@ -17,6 +18,10 @@ def every_turn_cell():
         state.state['location'] = 'messhall'
         out += '\nA guard comes to your cell and brings you to the mess hall.'
         out += rooms.messhall.welcome()
+    if common_actions.get_weekday(state.state['day']) == 'Monday' or common_actions.get_weekday(state.state['day']) == 'Wednesday':
+        state.state['location'] = 'bathroom'
+        out += '\nA guard comes to your cell and brings you to the bathroom.'
+        out += rooms.bathroom.welcome()
     return out
 
 

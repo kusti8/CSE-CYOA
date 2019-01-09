@@ -12,6 +12,12 @@ days = {
     0: 'Sunday'
 }
 
+other_inventory_names = {
+    "huck": "Huckleberry Finn",
+    "gatsby": "The Great Gatsby",
+    "trump": "Trump: The Art of the Deal"
+}
+
 def add_to_inventory(item):
     if len(state.state['inventory']) >= state.state['inventory_limit']:
         return "Sorry, but you are out of inventory space."
@@ -23,6 +29,9 @@ def remove_from_inventory(item):
     if item in state.state['inventory']:
         state.state['inventory'].remove(item)
         return "You have removed " + item + " from your inventory." 
+    elif item in other_inventory_names.keys():
+        state.state['inventory'].remove(other_inventory_names[item])
+        return "You have removed " + other_inventory_names[item] + " from your inventory." 
 
 def game_quit():
     state.state['dead'] = True
@@ -82,16 +91,18 @@ def examine(obj):
         return 'Mystery flavor. Probably chicken but who knows. Beats kibble though.'
     if obj['object'] == 'spoon' and 'soup' in state.state['inventory']:
         return 'Made of metal for some reason. Oddly large. Seems like a liability in a maximum security prison'
-    if obj['object'] == 'Huck' and 'Huckleberry Finn' in state.state['inventory']:
+    if obj['object'] == 'huck' and 'Huckleberry Finn' in state.state['inventory']:
         return 'Inside cover has a Mark Twain quote: “Never argue with an idiot. They will drag you down to their level and beat you with experience.” You wish you had a game console instead of the book.'
-    if obj['object'] == 'Trump' and 'Trump: The art of the Deal' in state.state['inventory']:
+    if obj['object'] == 'trump' and 'Trump: The Art of the Deal' in state.state['inventory']:
         return 'The dude on the cover has swagger to rival the Kim Jong Un painting but the book is lame. You wish you had a game console instead of the book.'
-    if obj['object'] == 'Gatsby' and 'The Great Gatsby' in state.state['inventory']:
+    if obj['object'] == 'gatsby' and 'The Great Gatsby' in state.state['inventory']:
         return 'You recall from Junior English at HTHS that this book is better than most classics but still a 4/10 at best. Has two towns named "Egg" though. You wish you had a game console instead of the book.'
+    if obj['object'] == 'book':
+        return 'What book? Use abbreviated titles.'
     
 common_options = {
     'get': get,
     'remove': remove,
-    'eat': eat
+    'eat': eat,
     'examine': examine
 }

@@ -31,9 +31,12 @@ def parse_input(text):
         },
         'messhall': {
             'buffet': [],
-            'book': ['books', 'library', 'shelf'],
+            'library': ['books', 'book', 'shelf'],
             'food': [],
-            'spoon': ['spork']
+            'spoon': ['spork'],
+            'huck': ['Huck', 'Huckleberry'],
+            'gatsby': ['Gatsby'],
+            'trump': ['Trump']
         }
     }
     
