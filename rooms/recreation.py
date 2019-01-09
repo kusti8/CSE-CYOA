@@ -23,7 +23,7 @@ def go(obj):
             out = "Turns out this is the prison black market. One man openes his jacket to reveal a few items.\n"
             for item in state.state['shop_inventory']:
                 out += item + '\n'
-            out+= 'Request an item to know what the market wants in return for it
+            out+= 'Request an item to know what the market wants in return for it'
             return out
         else:
             state.state['sub_location'] = 'foyer'
