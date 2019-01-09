@@ -19,6 +19,8 @@ other_inventory_names = {
 }
 
 def add_to_inventory(item):
+    if item == 'backpack':
+        state.state['inventory_limit'] = 6
     if len(state.state['inventory']) >= state.state['inventory_limit']:
         return "Sorry, but you are out of inventory space."
     else:
@@ -26,6 +28,8 @@ def add_to_inventory(item):
         return "You now have " + item
 
 def remove_from_inventory(item):
+    if item == 'backpack':
+        return 'No, no no. Not today.'
     if item in state.state['inventory']:
         state.state['inventory'].remove(item)
         return "You have removed " + item + " from your inventory." 
@@ -47,7 +51,7 @@ def increment_day(obj, num=1):
     if state.state['day'] - state.state['last_day_eaten'] > 4:
         out += '\nYou are very hungry. You look at the kibble anxiously.'
     if state.state['day'] - state.state['last_day_eaten'] > 9:
-        out += ('\n' + quit())
+        out += ('\n' + game_quit())
     
     out += every_turn_universal()
     
@@ -94,11 +98,16 @@ def examine(obj):
     if obj['object'] == 'huck' and 'Huckleberry Finn' in state.state['inventory']:
         return 'Inside cover has a Mark Twain quote: “Never argue with an idiot. They will drag you down to their level and beat you with experience.” You wish you had a game console instead of the book.'
     if obj['object'] == 'trump' and 'Trump: The Art of the Deal' in state.state['inventory']:
-        return 'The dude on the cover has swagger to rival the Kim Jong Un painting but the book is lame. You wish you had a game console instead of the book.'
+        return 'The dude on the cover has swagger to rival the Kim Jong Un painting but the book is lame. Might interest an imprisoned entrepreneur though.'
     if obj['object'] == 'gatsby' and 'The Great Gatsby' in state.state['inventory']:
         return 'You recall from Junior English at HTHS that this book is better than most classics but still a 4/10 at best. Has two towns named "Egg" though. You wish you had a game console instead of the book.'
     if obj['object'] == 'book':
         return 'What book? Use abbreviated titles.'
+    if obj['object'] == 'ball':
+        return 'Used to play a traditional American sport. Orange and black.'
+    if obj['object'] == 'backpack':
+        return 'Used to store things, giving you more inventory space. Seems like something you should hold on to.'
+    
     
 common_options = {
     'get': get,

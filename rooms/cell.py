@@ -2,6 +2,7 @@ import collections
 import state
 import rooms.messhall
 import rooms.bathroom
+import rooms.recreation
 import common_actions
 
 ################ACTION FUNCTIONS################
@@ -22,6 +23,10 @@ def every_turn_cell():
         state.state['location'] = 'bathroom'
         out += '\nA guard comes to your cell and brings you to the bathroom.'
         out += rooms.bathroom.welcome()
+    if common_actions.get_weekday(state.state['day']) == 'Saturday' or common_actions.get_weekday(state.state['day']) == 'Sunday':
+        state.state['location'] = 'recreation'
+        out += '\nA guard comes to your cell and brings you to recreation.'
+        out += rooms.recreation.welcome()
     return out
 
 
@@ -88,6 +93,14 @@ def welcome_back():
     state.state['location'] = 'cell'
     return 'Welcome back to your cell. Home sweet home.'
 
+def cheat(obj):
+    if not state.state['inventory']:
+        state.state['inventory'] = ['Trump: The Art of the Deal', 'clout', 'food', 'GameBoy', 'backpack', 'spoon']
+        state.state['inventory_limit'] = 1000
+    if obj['object'] in ['recreation', 'cell', 'bathroom', 'messhall']:
+        state.state['location'] = obj['object']
+    return 'You cheated. How do you feel?'
+
 cell_options = {
     'sleep': common_actions.increment_day,
     'dig': dig_hole,
@@ -95,5 +108,6 @@ cell_options = {
     'get': get,
     'move': move_painting,
     'flip': flip,
-    'open': open_item
+    'open': open_item,
+    'cheat': cheat
 }

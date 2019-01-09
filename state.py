@@ -8,6 +8,7 @@ state = {
     'execution_posted': False,
     'bowl_flipped': False,
     'location': 'cell',
-    'sub_location': 'tables', # Can be tables, buffet, library
-    'ceiling_pushed': False
+    'sub_location': 'tables', # Can be tables, buffet, library, basketball
+    'ceiling_pushed': False,
+    'shop_inventory': ['lantern', 'key', 'backpack', 'lambo']
 }

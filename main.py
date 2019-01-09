@@ -1,6 +1,7 @@
 import rooms.cell as cell
 import rooms.messhall as messhall
 import rooms.bathroom as bathroom
+import rooms.recreation as recreation
 import parse
 import state
 import common_actions
@@ -21,6 +22,8 @@ def cell_options(obj):
         print(messhall.messhall_options[obj['action']](obj))
     elif state.state['location'] == 'bathroom':
         print(bathroom.bathroom_options[obj['action']](obj))
+    elif state.state['location'] == 'recreation':
+        print(recreation.recreation_options[obj['action']](obj))
     
 
 while not state.state['dead']:

@@ -17,7 +17,11 @@ def parse_input(text):
         'play': [],
         'use': ['utilize'],
         'push': [],
-        'leave': ['quit']
+        'leave': ['quit'],
+        'shoot': ['throw'],
+        'ask': ['inquire', 'request'],
+        'trade': ['barter'],
+        'cheat': []
     }
     nouns = {
         'cell': {
@@ -30,7 +34,9 @@ def parse_input(text):
             'bowl': ['kibble', 'food', 'drink', 'water', 'juice', 'bowls'],
             'floor': ['ground'],
             'door': [],
-            'inventory': []
+            'inventory': [],
+            'GameBoy': [],
+            'cell': []
         },
         'messhall': {
             'buffet': [],
@@ -39,7 +45,8 @@ def parse_input(text):
             'spoon': ['spork'],
             'huck': ['Huck', 'Huckleberry'],
             'gatsby': ['Gatsby'],
-            'trump': ['Trump']
+            'trump': ['Trump'],
+            'messhall': []
         },
         'bathroom': {
             'toilet': ['bidet', 'toilette'],
@@ -47,7 +54,18 @@ def parse_input(text):
             'walls': ['wall', 'room'],
             'ceiling': ['roof'],
             'object': ['thing', 'item'],
-            'mirror': []
+            'mirror': [],
+            'bathroom': []
+        },
+        'recreation': {
+            'basketball': ['bball', 'ball', 'match', 'court', 'hoop', 'game'],
+            'man': ['bench','benches'],
+            'guys': ['men', 'people', 'corner', 'gang', 'black', 'market', 'shop', 'store'],
+            'lambo': ['lamborghini', 'car'],
+            'lantern': ['light'],
+            'key': ['room'],
+            'backpack': [],
+            'recreation': []
         }
     }
     

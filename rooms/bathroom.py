@@ -3,7 +3,7 @@ import common_actions
 import rooms.cell
 
 def welcome():
-    return "\n\nWelcome to the bathroom. It is very shabby: there is almost no room to move around, the ceiling is low and almost hits you in the head, and the floor is covered in dirt, but at least you get a bathroom. Rumor is some inmates don't get one.\nThere is a single toilet in front of you and a sink and mirror behind you. The walls to the right and left are covered in graffiti. You may ask to leave to go back to your cell at any time."
+    return "\n\nWelcome to the bathroom. It is very shabby: there is almost no room to move around, the ceiling is low and almost hits you in the head, and the floor is covered in dirt, but at least you get a bathroom. Rumor is some inmates don't get one.\nThere is a single toilet in front of you and a sink and mirror behind you. The walls to the right and left are covered in graffiti. You may ask to (leave) to go back to your cell at any time."
 
 def use(obj):
     if obj['object'] == 'toilet':
