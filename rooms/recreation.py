@@ -64,7 +64,7 @@ def trade(obj):
         out += 'The guys see how many items you have and are impressed. He gives you a lantern because of it.'
         out += common_actions.add_to_inventory('lantern')
         state.state['shop_inventory'].remove('lantern')
-    if obj['object'] == 'GameBoy' and state.state['sub_location'] == 'market' and 'GameBoy' in state.state['inventory']:
+    if obj['object'].lower() == 'GameBoy' and state.state['sub_location'] == 'market' and 'GameBoy' in state.state['inventory']:
         out += 'The men tell you that this key will open any cell door, but you\'ll just be shot by the guards if you do tduring the day unrer normal circumstances'
         out += common_actions.add_to_inventory('key')
         out += common_actions.remove_from_inventory('GameBoy')
@@ -77,14 +77,16 @@ def trade(obj):
     return out
 
 def play(obj):
+    if state.state['sub_location'] != 'old_man':
+        return
     game = tetris.Game()
     game.start()
-    if game.score > 3:
+    if game.score > -1:
         out = "Congratulations. Here's some clout."
         out += common_actions.add_to_inventory('clout')
         return out
     else:
-        return 'I guess kids these days just don\'t know how to paly tetris.'
+        return 'I guess kids these days just don\'t know how to play tetris.'
 
 recreation_options = {
     'leave': leave,
