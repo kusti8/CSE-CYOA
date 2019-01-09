@@ -14,7 +14,10 @@ def parse_input(text):
         'open': [],
         'go': ['goto' 'walk', 'walkto','travel'],
         'talk': ['converse'],
-        'play': []
+        'play': [],
+        'use': ['utilize'],
+        'push': [],
+        'leave': ['quit']
     }
     nouns = {
         'cell': {
@@ -37,6 +40,14 @@ def parse_input(text):
             'huck': ['Huck', 'Huckleberry'],
             'gatsby': ['Gatsby'],
             'trump': ['Trump']
+        },
+        'bathroom': {
+            'toilet': ['bidet', 'toilette'],
+            'sink': [],
+            'walls': ['wall', 'room'],
+            'ceiling': ['roof'],
+            'object': ['thing', 'item'],
+            'mirror': []
         }
     }
     

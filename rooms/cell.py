@@ -84,6 +84,10 @@ def open_item(obj):
     if obj['object'] == 'door':
         return "Cannot open the door. It is locked"
 
+def welcome_back():
+    state.state['location'] = 'cell'
+    return 'Welcome back to your cell. Home sweet home.'
+
 cell_options = {
     'sleep': common_actions.increment_day,
     'dig': dig_hole,

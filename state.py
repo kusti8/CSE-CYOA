@@ -8,5 +8,6 @@ state = {
     'execution_posted': False,
     'bowl_flipped': False,
     'location': 'cell',
-    'sub_location': 'tables' # Can be tables, buffet
+    'sub_location': 'tables', # Can be tables, buffet, library
+    'ceiling_pushed': False
 }

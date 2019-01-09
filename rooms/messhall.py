@@ -1,9 +1,10 @@
 import state
 import common_actions
+import rooms.cell
 
 def welcome():
     state.state['sub_location'] = 'tables'
-    return "\n\nWelcome to the Mess Hall. Eat up, because they serve something that isn't kibble here.\nThere is a food buffet at the far end of the room. To the left is a small one shelf library. Many books are missing. You are at the tables with a few other inmates."
+    return "\n\nWelcome to the Mess Hall. Eat up, because they serve something that isn't kibble here.\nThere is a food buffet at the far end of the room. To the left is a small one shelf library. Many books are missing. You are at the tables with a few other inmates. You may ask to leave to go back to your cell at any time."
 
 def get(obj):
     out = ''
@@ -61,8 +62,12 @@ def talk(obj):
 #     game.start()
 #     return "You got " + str(game.score)
 
+def leave(obj):
+    return rooms.cell.welcome_back()
+
 messhall_options = {
     'get': get,
     'go': go,
-    'talk': talk
+    'talk': talk,
+    'leave': leave
 }
