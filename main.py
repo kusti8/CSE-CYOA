@@ -30,17 +30,20 @@ def cell_options(obj):
     
 
 while not state.state['dead']:
-    obj = parse.parse_input(input('> '))
-    if not obj['object'] or not obj['action']:
-        print("Unknown command.")
-    try:
-        if obj['action'] in common_actions.common_options.keys():
-            result = common_actions.common_options[obj['action']](obj)
-            if not result:
-                cell_options(obj)
+    i = input('> ')
+    if i:
+        obj = parse.parse_input()
+        if not obj['object'] or not obj['action']:
+            print("Unknown command.")
+        try:
+            if obj['action'] in common_actions.common_options.keys():
+                result = common_actions.common_options[obj['action']](obj)
+                if not result:
+                    cell_options(obj)
+                else:
+                    print(result)
             else:
-                print(result)
-        else:
-            cell_options(obj)
-    except KeyError:
-        print("Unknown command.")
+                cell_options(obj)
+        except KeyError:
+            if obj['action']:
+                print("Unknown command.")

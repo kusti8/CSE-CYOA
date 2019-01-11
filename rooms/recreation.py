@@ -22,14 +22,21 @@ def go(obj):
             return "The man is happy to have someone to talk to and gives you a proposition. If you can beat him in a game of Tetris, he will make you famous at the prison.\n. Say play to challenge him."
         if dec == 'right':
             questions = [
-                ''
+                '"Quicklyyyyy: What is Mr. Dennis\' greatest fear?\n(a) Elevators\n(b) 2nd Place at TSA States\n(c)Milling machines\n (d)Purple"',
+                '"Which of these essays with get you a 100 on your English test?\n(a) A well thought out and clear essay\n(b) MLA citations\n(c) Crazy conspiracy theories\n(d) Tainted Christ"',
+                '"It is ten minutes to the end of the math period. What is half the class doing?\n(a) Homework\n(b) Prelab\n(c) Smash\n(d) Cards'
             ]
-            correct_answers = []
+            correct_answers = ['b', 'd', 'd']
             your_answers = []
             print('The man ignores your awkward greeting and starts asking you a variety of strange questions, rapid fire.\n')
-            print('"Quicklyyyyy: What is Mr. Dennis\' greatest fear?\na) Elevators\nb) 2nd Place at TSA States\nc)Milling machines\n d)"')
-            
-            return 'The man\'s voice changes to a normal tone and he stops attacking you with questions. \nHe says, "you seem knowledgeable about... stuff. Here\'s a tip. Try faking sleep some time and snooping around at night when the guards are tired. It might help you out.\nYou have gained the ability to fake sleep! Type (fake sleep) rather than (sleep) to pretend until 2:00 AM."'
+            for question in questions:
+                print(question)
+                your_answers.append(input('> ').strip().lower())
+            if your_answers == correct_answers:
+                state.state['fake_sleep'] = True
+                return 'The man\'s voice changes to a normal tone and he stops attacking you with questions. \nHe says, "you seem knowledgeable about... stuff. Here\'s a tip. Try faking sleep some time and snooping around at night when the guards are tired. It might help you out.\nYou have gained the ability to fake sleep! Type (fake sleep) rather than (sleep) to pretend until 2:00 AM."'
+            else:
+                return 'The man stares at you with scorn. "Do you even have a GPA above a 55?"'
         if dec == 'neither' or dec == 'back' or dec == 'no':
             state.state['sub_location'] = 'foyer'
             return "Your nerves get the best of you and you slowly back away from the benches."
