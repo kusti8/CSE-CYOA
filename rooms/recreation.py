@@ -24,9 +24,10 @@ def go(obj):
             questions = [
                 '"Quicklyyyyy: What is Mr. Dennis\' greatest fear?\n(a) Elevators\n(b) 2nd Place at TSA States\n(c)Milling machines\n(d)Purple"',
                 '"Which of these essays with get you a 100 on your English test?\n(a) A well thought out and clear essay\n(b) MLA citations\n(c) Crazy conspiracy theories\n(d) Tainted Christ"',
+                '"Where does Mrs. Finley go all day?\n(a) She\'s in her office\n(b) Teaching Health class\n(c) No one knows!\n(d) Practicing CPR"',
                 '"It is ten minutes to the end of the math period. What is half the class doing?\n(a) Homework\n(b) Prelab\n(c) Smash\n(d) Cards'
             ]
-            correct_answers = ['b', 'd', 'd']
+            correct_answers = ['b', 'd', 'c', 'd']
             your_answers = []
             print('The man ignores your awkward greeting and starts asking you a variety of strange questions, rapid fire.\n')
             for question in questions:
@@ -98,7 +99,7 @@ def trade(obj):
         out += common_actions.add_to_inventory('backpack')
         out += common_actions.remove_from_inventory('trump')
         state.state['shop_inventory'].remove('backpack')
-    if ##ADD IF OBJECT IS ITEM IN SHOP SAY "NO TELL ME WHAT YOU HAVE TO OFFER"
+    ##ADD IF OBJECT IS ITEM IN SHOP SAY "NO TELL ME WHAT YOU HAVE TO OFFER"
     return out
 
 def play(obj):
