@@ -15,7 +15,7 @@ def parse_input(text):
         'go': ['goto' 'walk', 'walkto','travel'],
         'talk': ['converse'],
         'play': [],
-        'use': ['utilize'],
+        'use': ['utilize', 'turn', 'on'],
         'push': [],
         'leave': ['quit'],
         'shoot': ['throw'],
@@ -59,13 +59,17 @@ def parse_input(text):
         },
         'recreation': {
             'basketball': ['bball', 'ball', 'match', 'court', 'hoop', 'game'],
-            'man': ['bench','benches'],
+            'man': ['bench','benches', 'men'],
             'guys': ['men', 'people', 'corner', 'gang', 'black', 'market', 'shop', 'store'],
             'lambo': ['lamborghini', 'car'],
             'lantern': ['light'],
             'key': ['room'],
             'backpack': [],
             'recreation': []
+        },
+        'corridor': {
+            'forward': ['straight', 'north', 'up'],
+            'corridor': []
         }
     }
     
@@ -90,5 +94,8 @@ def parse_input(text):
     
     if not out['object']: # We didn't find it in our nouns
         out['object'] = parse(merge_dicts(nouns, state.state['location']), -1, tokenized)
+        
+    if len(tokenized) < 2:
+        out['object'] = 'NONE'
     
     return out

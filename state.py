@@ -10,5 +10,7 @@ state = {
     'location': 'cell',
     'sub_location': 'tables', # Can be tables, buffet, library, basketball
     'ceiling_pushed': False,
-    'shop_inventory': ['lantern', 'key', 'backpack', 'lambo']
+    'shop_inventory': ['lantern', 'key', 'backpack', 'lambo'],
+    'fake_sleep': False,
+    'night': False
 }

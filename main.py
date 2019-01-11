@@ -2,6 +2,7 @@ import rooms.cell as cell
 import rooms.messhall as messhall
 import rooms.bathroom as bathroom
 import rooms.recreation as recreation
+import rooms.corridor as corridor
 import parse
 import state
 import common_actions
@@ -24,10 +25,14 @@ def cell_options(obj):
         print(bathroom.bathroom_options[obj['action']](obj))
     elif state.state['location'] == 'recreation':
         print(recreation.recreation_options[obj['action']](obj))
+    elif state.state['location'] == 'corridor':
+        print(corridor.corridor_options[obj['action']](obj))
     
 
 while not state.state['dead']:
     obj = parse.parse_input(input('> '))
+    if not obj['object'] or not obj['action']:
+        print("Unknown command.")
     try:
         if obj['action'] in common_actions.common_options.keys():
             result = common_actions.common_options[obj['action']](obj)

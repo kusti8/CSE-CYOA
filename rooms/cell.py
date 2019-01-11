@@ -12,7 +12,7 @@ def every_turn_cell():
     if 'A very special painting' in state.state['inventory']:
         out += '\nA guard notices you have removed and disrespected the painting of His Greatness Kim Jong Un. You are killed immediately. \n\n'
         out += common_actions.game_quit()
-    if state.state['bowl_flipped'] and common_actions.get_weekday(state.state['day']) == 'Thursday':
+    if state.state['bowl_flipped'] and common_actions.get_weekday(state.state['day']) == 'Friday':
       out += '\nA man walked by your cell and whispers something:\n\t'
       out += 'An item, you need. Go through the ground, you must.'
     if common_actions.get_weekday(state.state['day']) == 'Tuesday' or common_actions.get_weekday(state.state['day']) == 'Thursday':
@@ -32,8 +32,8 @@ def every_turn_cell():
 
 def dig_hole(obj):
     if 'spoon' not in state.state['inventory']:
-        response = input('Are you sure you want to do this? It is estimated to take around 3 months? [yn]')
-        if response.lower() != 'y':
+        response = input('Are you sure you want to do this? It is estimated to take around 3 months? Which is it: (yes) or (no)?')
+        if response.lower() != 'y' and response.lower() != 'yes':
             return ''
         state.state['last_day_eaten'] = state.state['day']+90
         out = common_actions.increment_day(obj,90)
@@ -61,7 +61,7 @@ def examine(obj):
     if obj['object'] == 'door':
         return 'Barred and locked. Large keyhole on the outside of the door. On the other side of the hall is a dim lightbulb.'
     if obj['object'] == 'note' and state.state['painting_got']:
-        return "If you want some help, make sure your food bowl is upside down on Thursday and I'll see.\nYou also better put back that painting or else they\'ll kill you for disrespecting Kim. -Yoda"
+        return "If you want some help, make sure your food bowl is upside down on Friday and I'll come visit.\nYou also better put back that painting or else they\'ll kill you for disrespecting Kim. -Yoda"
 
 def move_painting(obj):
     if obj['object'] == 'A very special painting':
@@ -83,11 +83,14 @@ def get(obj):
 def flip(obj):
   if obj['object'] == 'bowl':
     state.state['bowl_flipped'] = True
-    return 'You flipped the bowl. Now all you have to do is wait until Thursday.'
+    return 'You flipped the bowl. Now all you have to do is wait until Friday.'
 
 def open_item(obj):
-    if obj['object'] == 'door':
+    if obj['object'] == 'door' and 'key' not in state.state['inventory']:
         return "Cannot open the door. It is locked"
+    elif obj['object'] == 'door':
+        state.state['location'] == 'corridor'
+        return corridor.welcome()
 
 def welcome_back():
     state.state['location'] = 'cell'
@@ -97,7 +100,7 @@ def cheat(obj):
     if not state.state['inventory']:
         state.state['inventory'] = ['Trump: The Art of the Deal', 'clout', 'food', 'GameBoy', 'backpack', 'spoon']
         state.state['inventory_limit'] = 1000
-    if obj['object'] in ['recreation', 'cell', 'bathroom', 'messhall']:
+    if obj['object'] in ['recreation', 'cell', 'bathroom', 'messhall', 'corridor']:
         state.state['location'] = obj['object']
     return 'You cheated. How do you feel?'
 

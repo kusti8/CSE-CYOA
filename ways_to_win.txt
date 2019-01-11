@@ -8,10 +8,6 @@ ROUTE 2:
         Learn how to fake sleep
         Can open at night - less guards, but still shot (need lantern)
         Get lantern at recreation+bathroom/black market (# of items - oh you're so cool - clout)
-    ROUTE 2b:
-        Convince guy to help you (four choices maybe)
-        Set something in the bathroom (diversion)
-        Use key - no guards
     
 OPTIONS:
     Get backpack from bathroom, still have to find but not hard
