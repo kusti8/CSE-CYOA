@@ -22,7 +22,7 @@ def go(obj):
             return "The man is happy to have someone to talk to and gives you a proposition. If you can beat him in a game of Tetris, he will make you famous at the prison.\n. Say play to challenge him."
         if dec == 'right':
             questions = [
-                '"Quicklyyyyy: What is Mr. Dennis\' greatest fear?\n(a) Elevators\n(b) 2nd Place at TSA States\n(c)Milling machines\n (d)Purple"',
+                '"Quicklyyyyy: What is Mr. Dennis\' greatest fear?\n(a) Elevators\n(b) 2nd Place at TSA States\n(c)Milling machines\n(d)Purple"',
                 '"Which of these essays with get you a 100 on your English test?\n(a) A well thought out and clear essay\n(b) MLA citations\n(c) Crazy conspiracy theories\n(d) Tainted Christ"',
                 '"It is ten minutes to the end of the math period. What is half the class doing?\n(a) Homework\n(b) Prelab\n(c) Smash\n(d) Cards'
             ]
@@ -36,7 +36,7 @@ def go(obj):
                 state.state['fake_sleep'] = True
                 return 'The man\'s voice changes to a normal tone and he stops attacking you with questions. \nHe says, "you seem knowledgeable about... stuff. Here\'s a tip. Try faking sleep some time and snooping around at night when the guards are tired. It might help you out.\nYou have gained the ability to fake sleep! Type (fake sleep) rather than (sleep) to pretend until 2:00 AM."'
             else:
-                return 'The man stares at you with scorn. "Do you even have a GPA above a 55?"'
+                return 'The man stares at you with scorn. "Do you even have a 55 GPA? Try again fool."'
         if dec == 'neither' or dec == 'back' or dec == 'no':
             state.state['sub_location'] = 'foyer'
             return "Your nerves get the best of you and you slowly back away from the benches."
@@ -67,18 +67,20 @@ def shoot(obj):
     return out
     
 def ask(obj):
+    out = ''
     if state.state['sub_location'] == 'market' and len(state.state['inventory']) >= 4 and 'lantern' in state.state['shop_inventory']:
-        out = 'The guys see how many items you have and are impressed. They gives you a lantern in recognition of your item prowess.\n'
+        out += 'The guys see how many items you have and are impressed. They gives you a lantern in recognition of your item prowess.\n'
         out += common_actions.add_to_inventory('lantern')
         state.state['shop_inventory'].remove('lantern')
     if obj['object'] == 'lantern' and state.state['sub_location'] == 'market':
-        return '"This item has no price. I give it out to people that have manage to build a large collection of items"'
+        out += '"This item has no price. I give it out to people that have manage to build a large collection of items"'
     if obj['object'] == 'lambo' and state.state['sub_location'] == 'market':
-        return '"Son, do you really think you have enough money for this?"'
+        out += '"Son, do you really think you have enough money for this?"'
     if obj['object'] == 'key' and state.state['sub_location'] == 'market':
-        return '"I\'m looking for something that provides endless entertainment for this thing.'
+        out += '"I\'m looking for something that provides endless entertainment for this thing.'
     if obj['object'] == 'backpack' and state.state['sub_location'] == 'market':
-        return 'I would like something that would teach me how to improve our business in return for this.'
+        out += 'I would like something that would teach me how to improve our business in return for this.'
+    return out
 
 def trade(obj):
     out = ''
@@ -96,6 +98,7 @@ def trade(obj):
         out += common_actions.add_to_inventory('backpack')
         out += common_actions.remove_from_inventory('trump')
         state.state['shop_inventory'].remove('backpack')
+    if ##ADD IF OBJECT IS ITEM IN SHOP SAY "NO TELL ME WHAT YOU HAVE TO OFFER"
     return out
 
 def play(obj):

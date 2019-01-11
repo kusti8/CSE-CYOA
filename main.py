@@ -32,7 +32,7 @@ def cell_options(obj):
 while not state.state['dead']:
     i = input('> ')
     if i:
-        obj = parse.parse_input()
+        obj = parse.parse_input(i)
         if not obj['object'] or not obj['action']:
             print("Unknown command.")
         try:

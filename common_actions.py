@@ -45,6 +45,7 @@ def get_weekday(day_num):
     return days[day_num % 7]
     
 def increment_day(obj, num=1):
+    state.state['night'] = False
     state.state['day'] = state.state['day'] + num
     weekday = get_weekday(state.state['day'])
     out = "It is now %s day %d." % (weekday, state.state['day'])

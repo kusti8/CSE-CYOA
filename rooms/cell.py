@@ -104,6 +104,11 @@ def cheat(obj):
         state.state['location'] = obj['object']
     return 'You cheated. How do you feel?'
 
+def fake(obj):
+    if obj['object'] == 'sleep':
+        state.state['night'] = True
+        return 'It is now 2:00 am. Type (sleep) to wake up at your normal time'
+
 cell_options = {
     'sleep': common_actions.increment_day,
     'dig': dig_hole,
@@ -112,5 +117,6 @@ cell_options = {
     'move': move_painting,
     'flip': flip,
     'open': open_item,
-    'cheat': cheat
+    'cheat': cheat,
+    'fake': fake
 }

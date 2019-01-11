@@ -21,7 +21,8 @@ def parse_input(text):
         'shoot': ['throw'],
         'ask': ['inquire', 'request'],
         'trade': ['barter'],
-        'cheat': []
+        'cheat': [],
+        'fake': []
     }
     nouns = {
         'cell': {
@@ -36,7 +37,8 @@ def parse_input(text):
             'door': [],
             'inventory': [],
             'GameBoy': [],
-            'cell': []
+            'cell': [],
+            'sleep': []
         },
         'messhall': {
             'buffet': [],
