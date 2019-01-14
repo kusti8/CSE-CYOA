@@ -121,7 +121,7 @@ def play(obj):
         return
     game = tetris.Game()
     game.start()
-    if game.score > 2:
+    if game.score > 200:
         out = '"Congratulations on playing a great game," he says. "Here\'s some clout."'
         out += common_actions.add_to_inventory('clout')
         return out

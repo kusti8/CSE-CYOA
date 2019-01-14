@@ -129,7 +129,7 @@ class Game():
         counter = Counter()
         for box in boxes_to_check.values(): counter[box] += 1
         complete_lines = [k for k, v in counter.items() 
-                if v == (Game.WIDTH/Shape.BOX_SIZE)]
+                if v == (Game.WIDTH/Shape.BOX_SIZE - 1)]
  
         if not complete_lines: return False
 
