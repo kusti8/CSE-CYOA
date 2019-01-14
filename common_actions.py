@@ -1,8 +1,9 @@
 import state
 import collections
 import rooms.cell
+#import global state variables, collections library, and the cell location code
 
-days = {
+days = { #list of weekdays and their corresponding numbers
     1: 'Monday',
     2: 'Tuesday',
     3: 'Wednesday',
@@ -12,13 +13,13 @@ days = {
     0: 'Sunday'
 }
 
-other_inventory_names = {
+other_inventory_names = { #list of alternate names for some items that can be added to your inventory
     "huck": "Huckleberry Finn",
     "gatsby": "The Great Gatsby",
     "trump": "Trump: The Art of the Deal"
 }
 
-def add_to_inventory(item):
+def add_to_inventory(item): #adds an item to inventory or tells the player that they cannot do so if they are out of inventory space 
     if item == 'backpack':
         state.state['inventory_limit'] = 6
     if len(state.state['inventory']) >= state.state['inventory_limit']:
@@ -27,7 +28,7 @@ def add_to_inventory(item):
         state.state['inventory'].append(item)
         return "You now have " + item
 
-def remove_from_inventory(item):
+def remove_from_inventory(item): #rempves an item from the player's inventory unless it is a backpack, which cannot be removed
     if item == 'backpack':
         return 'No, no no. Not today.'
     if item in state.state['inventory']:
@@ -37,41 +38,41 @@ def remove_from_inventory(item):
         state.state['inventory'].remove(other_inventory_names[item])
         return "You have removed " + other_inventory_names[item] + " from your inventory." 
 
-def game_quit():
+def game_quit(): #quits the program and prints 'you have died' if the player loses
     state.state['dead'] = True
     return "\nYou have died."
     
-def get_weekday(day_num):
+def get_weekday(day_num): #prints the current day of the week
     return days[day_num % 7]
     
-def increment_day(obj, num=1):
-    state.state['night'] = False
-    state.state['day'] = state.state['day'] + num
+def increment_day(obj, num=1): #called when the player sleeps
+    state.state['night'] = False #sets state to daytime
+    state.state['day'] = state.state['day'] + num #increments the day number by one
     weekday = get_weekday(state.state['day'])
-    out = "It is now %s day %d." % (weekday, state.state['day'])
-    if state.state['day'] - state.state['last_day_eaten'] > 4:
+    out = "It is now %s day %d." % (weekday, state.state['day']) #prints the day and the day of the week to the player
+    if state.state['day'] - state.state['last_day_eaten'] > 5: #informs the player that they need to eat soon
         out += '\nYou are very hungry. You look at the kibble anxiously.'
-    if state.state['day'] - state.state['last_day_eaten'] > 9:
+    if state.state['day'] - state.state['last_day_eaten'] > 9: #kills the player if they do not eat for 10 days in a row
         out += ('\n' + game_quit())
     
-    out += every_turn_universal()
+    out += every_turn_universal() #handles the countdown to execution on day 31
     
     if state.state['location'] == 'cell':
-        out += rooms.cell.every_turn_cell()
+        out += rooms.cell.every_turn_cell() #adds additonal lines to be printed to the player in certain situations
 
-    return out
+    return out 
     
-def every_turn_universal():
+def every_turn_universal(): #handles the countdown to execution on day 31
     out = ''
-    if state.state['day'] > 30:
+    if state.state['day'] > 30: #if the player reaches a day past the 30th day tell them that they have been executed and quit the program
         out += '\nIt is the ' + str(state.state['day']) + 'th day. You are executed by North Korea.'
         out += game_quit()
-    elif state.state['day'] > 20:
+    elif state.state['day'] > 20: #if the player reaches a day past the 20th day tell them how long until they will be executed
         state.state['execution_posted'] = True
-        out += '\nYour execution date has been posted on the wall. It is in 10 days. A shiver runs down your spine as you see it. Time is running out.'
+        out += '\nYour execution date has been posted on the wall. It is in ' + str(30-state.state['day']) + ' days. A shiver runs down your spine as you see it. Time is running out.'
     return out
         
-def get_inventory(obj):
+def get_inventory(obj): #prints the contents of the player's inventory
     out = 'You have:'
     for item, count in collections.Counter(state.state['inventory']).items():
         out += '\n' + str(count) + ' ' + item
@@ -79,19 +80,22 @@ def get_inventory(obj):
             out += 's'
     return out
     
-def remove(obj):
+def remove(obj): #removes any item in the player's inventory permenently
     return remove_from_inventory(obj['object'])
 
-def get(obj):
+def get(obj): #calls get inventory
     if obj['object'] == 'inventory':
         return get_inventory(obj)
         
-def eat(obj):
-    state.state['last_day_eaten'] = state.state['day']
-    remove_from_inventory('food')
-    return 'You eat some food. Another day of not going hungry.'
+def eat(obj): #allows the player to eat food out of their inventory if they have any
+    if 'food' in state.state['inventory']:
+        state.state['last_day_eaten'] = state.state['day']
+        remove_from_inventory('food')
+        return 'You eat some food. Another day of not going hungry.'
+    else:
+        return 'Can\'t do that if you don\'t have any food to eat!'
     
-def examine(obj):
+def examine(obj): #allows inventory items to be examined at any time if the player has that item
     if obj['object'] == 'food' and 'food' in state.state['inventory']:
         return 'Mystery flavor. Probably chicken but who knows. Beats kibble though.'
     if obj['object'] == 'spoon' and 'soup' in state.state['inventory']:
@@ -102,15 +106,15 @@ def examine(obj):
         return 'The dude on the cover has swagger to rival the Kim Jong Un painting but the book is lame. Might interest an imprisoned entrepreneur though.'
     if obj['object'] == 'gatsby' and 'The Great Gatsby' in state.state['inventory']:
         return 'You recall from Junior English at HTHS that this book is better than most classics but still a 4/10 at best. Has two towns named "Egg" though. You wish you had a game console instead of the book.'
-    if obj['object'] == 'book':
+    if obj['object'] == 'book': 
         return 'What book? Use abbreviated titles.'
-    if obj['object'] == 'ball':
+    if obj['object'] == 'ball' and 'ball' in state.state['inventory']:
         return 'Used to play a traditional American sport. Orange and black.'
-    if obj['object'] == 'backpack':
+    if obj['object'] == 'backpack' and 'backpack' in state.state['inventory']:
         return 'Used to store things, giving you more inventory space. Seems like something you should hold on to.'
     
     
-common_options = {
+common_options = { #connects the player's entered commands to the parser to account for different terms that mean the same thing
     'get': get,
     'remove': remove,
     'eat': eat,

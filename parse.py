@@ -1,7 +1,9 @@
 import state
+#import global state variables file
 
-def parse_input(text):
-    verbs = {
+
+def parse_input(text): 
+    verbs = { #replaces verbs with a synonym if a function will understand a synonym of a verb entered in a command
         'walk': ['move', 'run', 'jog'],
         'sleep': ['dream'],
         'dig': [],
@@ -24,8 +26,8 @@ def parse_input(text):
         'cheat': [],
         'fake': []
     }
-    nouns = {
-        'cell': {
+    nouns = { #replaces nouns with a synonym if a function will understand a synonym of a noun entered in a command
+        'cell': { #noun replacements when player is located in the cell
             'left': ['west'],
             'right': ['east'],
             'cot': ['bed'],
@@ -36,12 +38,12 @@ def parse_input(text):
             'floor': ['ground'],
             'door': [],
             'inventory': [],
-            'GameBoy': [],
+            'GameBoy': ['gameboy'],
             'cell': [],
             'sleep': [],
             'hole': ['escape']
         },
-        'messhall': {
+        'messhall': { #noun replacements when player is located in the mess hall
             'buffet': [],
             'library': ['books', 'book', 'shelf'],
             'food': [],
@@ -53,7 +55,7 @@ def parse_input(text):
             'drink': ['water'],
             'tables': []
         },
-        'bathroom': {
+        'bathroom': { #noun replacements when player is located in the bathroom
             'toilet': ['bidet', 'toilette'],
             'sink': [],
             'walls': ['wall', 'room'],
@@ -62,7 +64,7 @@ def parse_input(text):
             'mirror': [],
             'bathroom': []
         },
-        'recreation': {
+        'recreation': { #noun replacements when player is located in the recreation room
             'basketball': ['bball', 'ball', 'match', 'court', 'hoop', 'game'],
             'man': ['bench','benches', 'men'],
             'guys': ['people', 'corner', 'gang', 'black', 'market', 'shop', 'store'],
@@ -72,35 +74,37 @@ def parse_input(text):
             'backpack': [],
             'recreation': []
         },
-        'corridor': {
+        'corridor': { #noun replacements when player is located in the corridor
             'forward': ['straight', 'north', 'up'],
             'corridor': []
         }
     }
     
-    def parse(obj, location, tokenized):
+    def parse(obj, location, tokenized): 
+        # Go through all of the words and check if we are equal to the word or any of the synonyms
         for main, options in obj.items():
             if tokenized[location] in options or tokenized[location]==main:
                 return main
     
     def merge_dicts(d, non_location):
+        # Merge the individual dictionaries of the nouns for the different rooms
         out = {}
         for location in d.keys():
             if location != non_location:
                 out.update(d[location])
         return out
     
-    tokenized = text.strip().split()
+    tokenized = text.strip().split() # Split into words
     out = {'action': '', 'object': ''}
-    out['action'] = parse(verbs, 0, tokenized)
+    out['action'] = parse(verbs, 0, tokenized) # Find a verb as the first word
     
     my_nouns = nouns[state.state['location']] # Nouns for my room
-    out['object'] = parse(my_nouns, -1, tokenized)
+    out['object'] = parse(my_nouns, -1, tokenized) # Find a noun of my room as the last word
     
-    if not out['object']: # We didn't find it in our nouns
-        out['object'] = parse(merge_dicts(nouns, state.state['location']), -1, tokenized)
+    if not out['object']: # We didn't get a noun, so broaden the search to all of the locations
+        out['object'] = parse(merge_dicts(nouns, state.state['location']), -1, tokenized) # Merge all the rest of the nouns together
         
-    if len(tokenized) < 2:
+    if len(tokenized) < 2: #if phrase length is less than two words
         out['object'] = 'NONE'
     
-    return out
+    return out #return phrase as the player command functions will understand

@@ -1,3 +1,5 @@
+#basis for Tetris minigame code taken from GitHub: https://github.com/bsamek/Tetris
+#modifications made by Gustav Hansen
 import tkinter
 from tkinter import Canvas, Label, Tk, StringVar, messagebox
 

@@ -18,6 +18,7 @@ def every_turn_cell():
     if state.state['bowl_flipped'] and common_actions.get_weekday(state.state['day']) == 'Friday':
       out += '\nA very short, sickly looking man walks by your cell and whispers something:\n\t'
       out += '"An item, you need. Go through the ground, you must."'
+      state.state ['bowl_flipped'] == False
     if common_actions.get_weekday(state.state['day']) == 'Tuesday' or common_actions.get_weekday(state.state['day']) == 'Thursday':
         state.state['location'] = 'messhall'
         out += '\nA guard comes to your cell and brings you to the mess hall.'
@@ -78,6 +79,8 @@ def get_painting(obj):
     return out
 
 def get(obj):
+    if obj['object'] == 'schedule':
+        return 'They check to see if the schedule is still there every night. Better leave it.'
     if obj['object'] == 'A very special painting':
         return get_painting(obj)
     if obj['object'] == 'food':
