@@ -64,8 +64,8 @@ def increment_day(obj, num=1):
 def every_turn_universal():
     out = ''
     if state.state['day'] > 30:
-        out += '\nIt is the 30th day. You are executed by North Korea.'
-        out += quit()
+        out += '\nIt is the ' + str(state.state['day']) + 'th day. You are executed by North Korea.'
+        out += game_quit()
     elif state.state['day'] > 20:
         state.state['execution_posted'] = True
         out += '\nYour execution date has been posted on the wall. It is in 10 days. A shiver runs down your spine as you see it. Time is running out.'

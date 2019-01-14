@@ -2,6 +2,7 @@ import collections
 import state
 import rooms.messhall
 import rooms.bathroom
+import rooms.corridor
 import rooms.recreation
 import common_actions
 
@@ -9,12 +10,14 @@ import common_actions
 
 def every_turn_cell():
     out = ''
+    if state.state['dead']:
+        return ''
     if 'A very special painting' in state.state['inventory']:
         out += '\nA guard notices you have removed and disrespected the painting of His Greatness Kim Jong Un. You are killed immediately. \n\n'
         out += common_actions.game_quit()
     if state.state['bowl_flipped'] and common_actions.get_weekday(state.state['day']) == 'Friday':
-      out += '\nA man walked by your cell and whispers something:\n\t'
-      out += 'An item, you need. Go through the ground, you must.'
+      out += '\nA very short, sickly looking man walks by your cell and whispers something:\n\t'
+      out += '"An item, you need. Go through the ground, you must."'
     if common_actions.get_weekday(state.state['day']) == 'Tuesday' or common_actions.get_weekday(state.state['day']) == 'Thursday':
         state.state['location'] = 'messhall'
         out += '\nA guard comes to your cell and brings you to the mess hall.'
@@ -31,16 +34,17 @@ def every_turn_cell():
 
 
 def dig_hole(obj):
+    out = ''
     if 'spoon' not in state.state['inventory']:
         response = input('Are you sure you want to do this? It is estimated to take around 3 months? Which is it: (yes) or (no)?')
         if response.lower() != 'y' and response.lower() != 'yes':
             return ''
         state.state['last_day_eaten'] = state.state['day']+90
-        out = common_actions.increment_day(obj,90)
+        out += common_actions.increment_day(obj,90)
         out += '\n'
     else:
         state.state['last_day_eaten'] = state.state['day']+7
-        out = common_actions.increment_day(obj,7)
+        out += common_actions.increment_day(obj,7)
         out += '\n'
         out += "You've found a GameBoy. Now you can be entertained in prison."
         state.state['inventory'].append("GameBoy")
@@ -61,7 +65,7 @@ def examine(obj):
     if obj['object'] == 'door':
         return 'Barred and locked. Large keyhole on the outside of the door. On the other side of the hall is a dim lightbulb.'
     if obj['object'] == 'note' and state.state['painting_got']:
-        return "If you want some help, make sure your food bowl is upside down on Friday and I'll come visit.\nYou also better put back that painting or else they\'ll kill you for disrespecting Kim. -Yoda"
+        return "You read the note. \"If you want some help, make sure your food bowl is upside down on Friday and I'll come visit.\nYou also better put back that painting or else they\'ll kill you for disrespecting Kim. -Yoda\""
 
 def move_painting(obj):
     if obj['object'] == 'A very special painting':
@@ -70,7 +74,7 @@ def move_painting(obj):
 def get_painting(obj):
     out = common_actions.add_to_inventory('A very special painting')
     state.state['painting_got'] = True
-    out += '\nThere seems to be a note on the wall.'
+    out += '\nOh? There seems to be a note on the wall where the painting was covering moments ago.'
     return out
 
 def get(obj):
@@ -90,7 +94,7 @@ def open_item(obj):
         return "Cannot open the door. It is locked"
     elif obj['object'] == 'door':
         state.state['location'] == 'corridor'
-        return corridor.welcome()
+        return rooms.corridor.welcome()
 
 def welcome_back():
     state.state['location'] = 'cell'
@@ -105,7 +109,7 @@ def cheat(obj):
     return 'You cheated. How do you feel?'
 
 def fake(obj):
-    if obj['object'] == 'sleep':
+    if obj['object'] == 'sleep' and state.state['fake_sleep']:
         state.state['night'] = True
         return 'It is now 2:00 am. Type (sleep) to wake up at your normal time'
 

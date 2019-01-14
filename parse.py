@@ -12,7 +12,7 @@ def parse_input(text):
         'remove': ['return', 'throw'],
         'flip': [],
         'open': [],
-        'go': ['goto' 'walk', 'walkto','travel'],
+        'go': ['goto' 'walk', 'walkto','travel', 'proceed'],
         'talk': ['converse'],
         'play': [],
         'use': ['utilize', 'turn', 'on'],
@@ -38,7 +38,8 @@ def parse_input(text):
             'inventory': [],
             'GameBoy': [],
             'cell': [],
-            'sleep': []
+            'sleep': [],
+            'hole': ['escape']
         },
         'messhall': {
             'buffet': [],
@@ -48,7 +49,9 @@ def parse_input(text):
             'huck': ['Huck', 'Huckleberry'],
             'gatsby': ['Gatsby'],
             'trump': ['Trump'],
-            'messhall': []
+            'messhall': [],
+            'drink': ['water'],
+            'tables': []
         },
         'bathroom': {
             'toilet': ['bidet', 'toilette'],
@@ -62,7 +65,7 @@ def parse_input(text):
         'recreation': {
             'basketball': ['bball', 'ball', 'match', 'court', 'hoop', 'game'],
             'man': ['bench','benches', 'men'],
-            'guys': ['men', 'people', 'corner', 'gang', 'black', 'market', 'shop', 'store'],
+            'guys': ['people', 'corner', 'gang', 'black', 'market', 'shop', 'store'],
             'lambo': ['lamborghini', 'car'],
             'lantern': ['light'],
             'key': ['room'],
