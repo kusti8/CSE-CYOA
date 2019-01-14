@@ -14,7 +14,7 @@ def printf(s):
         for char in s:
             print(char, end='')
             sys.stdout.flush()
-            #sleep(0.02)
+            sleep(0.02)
         print()
 
 printf('\nPrison Escape!')
