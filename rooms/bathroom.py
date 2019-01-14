@@ -28,7 +28,7 @@ def push(obj): #result of a push [ceiling] command
     if obj['object'] == 'ceiling': 
         state.state['ceiling_pushed'] = True #set the state of the ceiling to pushed so that the item inside can be accessed
         return 'The low ceiling gives way and reveals a secret crevice above your head. There appears to be an object in the shadows of the crevice.' #response to player upon pushing ceiling
-    
+      
 def get(obj): #result of a get [item] command
     if obj['object'] == 'ceiling': #pushes ceiling if the player trys to 'get' the low tile
         return push(obj)

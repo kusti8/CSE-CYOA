@@ -1,9 +1,11 @@
 import state
 import common_actions
 import rooms.cell
+#import code handling actions the player can do anywhere and global state variables, as well as the cell room so that the welcome function can be called when the player returns to their cell
 import tetris
 import sys
 from time import sleep
+#import code handeling tetris minigame
 
 def printf(s):
     for char in s:
@@ -11,6 +13,7 @@ def printf(s):
         sys.stdout.flush()
         sleep(0.02)
     print()
+#
 
 def welcome():
     state.state['sub_location'] = 'foyer'
@@ -128,7 +131,7 @@ def play(obj):
     else:
         return 'The man shrugs and frowns. "I guess kids these days just don\'t know how to play tetris," he mutters.'
 
-recreation_options = {
+recreation_options = { #connects the player's entered commands to the parser to account for different terms that mean the same thing
     'leave': leave,
     'go': go,
     'get': get,
