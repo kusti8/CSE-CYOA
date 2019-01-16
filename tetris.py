@@ -242,3 +242,4 @@ def main():
             draw_game_window(game_window)
     finally:
         curses.endwin()
+        return game_board.score

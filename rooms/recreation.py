@@ -83,7 +83,7 @@ def ask(obj): #allows the player to ask what the men want in return for any item
     out = ''
     if state.state['sub_location'] == 'market' and len(state.state['inventory']) >= 4 and 'lantern' in state.state['shop_inventory']:
         #if the player executes an ask command with at least 4 items but not a full inventory of 6, give them a lantern
-        out += 'The guys see how many items you have and are impressed. They gives you a lantern in recognition of your item prowess.\n'
+        out += 'The guys see how many items you have and are impressed. They give you a lantern in recognition of your item prowess.\n'
         out += common_actions.add_to_inventory('lantern') + '.\n'
         if 'Sorry, but you are out of inventory space' not in out:
             state.state['shop_inventory'].remove('lantern') #removes lantern from shop inventory
@@ -99,7 +99,9 @@ def ask(obj): #allows the player to ask what the men want in return for any item
 
 def trade(obj):
     out = ''
+    print(state.state)
     state.state['inventory_limit'] += 1 # Increase limit so that trades can happen even if the player's inventory is full
+    print(state.state)
     if state.state['sub_location'] == 'market' and len(state.state['inventory']) >= 4 and len(state.state['inventory']) !=6 and 'lantern' in state.state['shop_inventory']:
             #if the player executes a trade command with at least 4 items but not a full inventory of 6, give them a lantern
         out += 'The guys see how many items you have and are impressed. He gives you a lantern because of it.'
