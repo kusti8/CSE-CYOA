@@ -29,6 +29,7 @@ printf('Revision 1.2 / Serial number 8675309 \n')
 printf('Slam! A guard slams your cell door shut. Welcome to Yodok Concentration Camp, Pyongyang, North Korea. \nIt\'s going to be a long 300 years or until death, whichever comes last. Or perhaps they will execute you quickly. Who knows.')
 printf('You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you. ')
 printf('Below the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.')
+printf("\nTo play, simply type in phrases, starting with a verb and ending with a noun (like 'read schedule'). The hard part is figuring out what are the right commands.")
 #print an introduction that tells the player the beginning of the game's storyline 
 
 def cell_options(obj): #determines which file to look through for command results based on player location in-game
