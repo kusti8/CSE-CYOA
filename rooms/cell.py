@@ -128,10 +128,10 @@ def open_item(obj): #results if player attempts to open the door
 
 def welcome_back(): #informs the player that they have returned to their cell
     state.state['location'] = 'cell' #sets the global location variable to 'cell'
-    return 'Welcome back to your cell. Home sweet home.'
+    return 'Welcome back to your cell. Home sweet home.\n You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you.\nBelow the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.'
 
 def cheat(obj): #a cheat command intended for debugging and development. Left in for demonstration and grading purposes
-    if not state.state['inventory']: #if 'cheat' entered, give the player a variety of items that make winning the game trivial and infinate inventory space
+    if not state.state['inventory']: #if 'cheat' entered, give the player a variety of items that make winning the game trivial and infinite inventory space
         state.state['inventory'] = ['Trump: The Art of the Deal', 'clout', 'key', 'GameBoy', 'backpack', 'spoon']
         state.state['inventory_limit'] = 1000 
     if obj['object'] in ['recreation', 'cell', 'bathroom', 'messhall', 'corridor']: #if cheat [location] entered, teleport the player to a room of their choice
@@ -143,7 +143,7 @@ def fake(obj): #fake sleep command that the player gains the ability to use afte
         state.state['night'] = True #sets time state to night
         return 'It is now 2:00 am. Type (sleep) to wake up at your normal time'
 
-def use_key(obj): ##results if player attempts to open the door 
+def use_key(obj): #results if player attempts to open the door 
     if obj['object'] == 'key' and 'key' not in state.state['inventory']: #if the player does not have a key, inform them that the door is locked
         return "Cannot open the door. It is locked"
     elif obj['object'] == 'key' and 'key' in state.state['inventory']: #if the player has a key, open the door and enter the corridor
