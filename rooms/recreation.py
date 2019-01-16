@@ -123,9 +123,8 @@ def trade(obj):
 def play(obj):
     if state.state['sub_location'] != 'old_man':
         return
-    game = tetris.Game()
-    game.start()
-    if game.score > 200:
+    score = tetris.main()
+    if score > 400:
         out = '"Congratulations on playing a great game," he says. "Here\'s some clout."'
         out += common_actions.add_to_inventory('clout')
         return out
