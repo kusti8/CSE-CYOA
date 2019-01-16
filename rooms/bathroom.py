@@ -16,13 +16,13 @@ def use(obj): #possible results of a use [item] command
 
 def examine(obj): #possible results of an examine [item] command
     if obj['object'] == 'toilet': #message if the [item] is the toilet
-        return 'White porcelin and beautiful. Just kidding.'
+        return 'White porcelain and beautiful. Just kidding.'
     if obj['object'] == 'sink': #message if the [item] is the sink
         return 'Has two knobs, one for cold water and one for hot. The hot water one is snapped at an odd angle.'
     if obj['object'] == 'mirror': #message if the [item] is the mirror
         return "You look at yourself in the mirror. You're still devilishly handsome, even in prison."
     if obj['object'] == 'walls': #message if the [item] is the walls
-        return "There's a ton of grafitti. Some is in other languages. A long soliloqy in the middle stands out:\n\nSelon toutes les lois connues de l'aviation, il est impossible qu'une abeille puisse voler. \nSes ailes sont trop petites pour tirer son gros corps du sol. L'abeille, bien sûr, vole quand même. \nParce que les abeilles ne se soucient pas de ce que les humains pensent impossible."
+        return "There's a ton of graffiti. Some is in other languages. A long soliloquy in the middle stands out:\n\nSelon toutes les lois connues de l'aviation, il est impossible qu'une abeille puisse voler. \nSes ailes sont trop petites pour tirer son gros corps du sol. L'abeille, bien sûr, vole quand même. \nParce que les abeilles ne se soucient pas de ce que les humains pensent impossible."
     if obj['object'] == 'ceiling': #message if the [item] is the ceiling
         return "The ceiling is very low and almost hits you in the head."
     if obj['object'] == 'floor': #message if the [item] is the floor
@@ -34,10 +34,10 @@ def push(obj): #result of a push ceiling command
         return 'The low ceiling gives way and reveals a secret crevice above your head. There appears to be an object in the shadows of the crevice.' #response to player upon pushing ceiling
       
 def get(obj): #result of a get [item] command
-    if obj['object'] == 'ceiling': #pushes ceiling if the player trys to 'get' the low tile
+    if obj['object'] == 'ceiling': #pushes ceiling if the player tries to 'get' the low tile
         return push(obj)
-    if obj['object'] == 'object' and state.state['ceiling_pushed']:  #if the celing has been pushed, adds the backpack and clout hidden there to their inventory
-        out = 'You pull out the objet. It is a Supreme brand backpack! The backpack also gives you clout, by the sheer essence of being Supreme.' #response to player upon getting the backpack
+    if obj['object'] == 'object' and state.state['ceiling_pushed']:  #if the ceiling has been pushed, adds the backpack and clout hidden there to their inventory
+        out = 'You pull out the object. It is a Supreme brand backpack! The backpack also gives you clout, by the sheer essence of being Supreme.' #response to player upon getting the backpack
         out += common_actions.add_to_inventory('backpack') + '\n'
         out += common_actions.add_to_inventory('clout') + '\n'
         return out

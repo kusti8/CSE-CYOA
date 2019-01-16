@@ -28,7 +28,7 @@ def welcome():
     
     printf('Slam! A guard slams your cell door shut. Welcome to Yodok Concentration Camp, Pyongyang, North Korea. \nIt\'s going to be a long 300 years or until death, whichever comes last. Or perhaps they will execute you quickly. Who knows.')
     printf("It is Monday, day 1.")
-    printf('You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you. ')
+    printf('You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderately large painting picture of Kim Jong Un is on the wall in front of you. ')
     printf('Below the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.')
     printf("\nTo play, simply type in phrases, starting with a verb and ending with a noun (like 'read schedule'). But what exactly are these commands? That's for you to figure out. Type (help) for a short list of fundamental commands.")
     #print an introduction that tells the player the beginning of the game's storyline 
@@ -61,7 +61,7 @@ def every_turn_cell(): #things that can possibly occur after the player sleeps
 
 def dig_hole(obj): #allows the player to attempt to dig a hole in the cell floor
     out = ''
-    if 'spoon' not in state.state['inventory']: #promps the player that attempting to dig a hole with their bare hands might get them executed
+    if 'spoon' not in state.state['inventory']: #prompts the player that attempting to dig a hole with their bare hands might get them executed
         response = input('Are you sure you want to do this? It is estimated to take around 3 months. You might be executed by then. Which is it: (yes) or (no)?')
         if response.lower() != 'y' and response.lower() != 'yes': #
             return 'You chose not to dig a hole.' #returns a message if the player chooses not to dig a hole
@@ -71,7 +71,7 @@ def dig_hole(obj): #allows the player to attempt to dig a hole in the cell floor
     else:
         out += "After a week, you find something in the dirt. It's a GameBoy! Now you can be entertained in prison." #if the player has a spoon, advances time by a week and gives them the GameBoy they dig up. 
         out += common_actions.add_to_inventory("GameBoy")
-        if 'Sorry, but you are out of inventory space' not in out: #doesn't use 7 days if player is unable to aquire tbe GameBoy due to a full inventory
+        if 'Sorry, but you are out of inventory space' not in out: #doesn't use 7 days if player is unable to acquire tbe GameBoy due to a full inventory
             state.state['last_day_eaten'] = state.state['day']+7 
             out += common_actions.increment_day(obj,7)
             
@@ -82,9 +82,9 @@ def examine(obj): #possible results of an examine [item] command
     if obj['object'] == 'cot': #message if the [item] is the cot
         return 'It looks like it might fit you if you were 4 foot 9. Too bad you weren\'t arrested at age 7. Lacks a pillow'
     if obj['object'] == 'A very special painting': #message if the [item] is the painting
-        return 'Kim Jong Un is wearing a Supreme shirt and Gucci jacket. High quality craftsmanship. The painting is sadly the most valuble object in the cell. Not well secured to the wall though. Looks like it might fall off.'
+        return 'Kim Jong Un is wearing a Supreme shirt and Gucci jacket. High quality craftsmanship. The painting is sadly the most valuable object in the cell. Not well secured to the wall though. Looks like it might fall off.'
     if obj['object'] == 'schedule': #message if the [item] is the schedule
-        return 'Comic Sans font, size 13. \nMonday: Bathroom break \nTuesday: Mess Hall\nWednsday: Bathroom break  \nThursday: Mess Hall \nFriday: Nothing \nSaturday: Recreation \nSunday: Recreaction'
+        return 'Comic Sans font, size 13. \nMonday: Bathroom break \nTuesday: Mess Hall\nWednesday: Bathroom break  \nThursday: Mess Hall \nFriday: Nothing \nSaturday: Recreation \nSunday: Recreaction'
     if obj['object'] == 'bowls': #message if the [item] is bowls
         return 'Looks like dog kibble and year-old apple juice. Better not eat that.'
     if obj['object'] == 'floor': #message if the [item] is the floor
@@ -128,7 +128,7 @@ def open_item(obj): #results if player attempts to open the door
 
 def welcome_back(): #informs the player that they have returned to their cell
     state.state['location'] = 'cell' #sets the global location variable to 'cell'
-    return 'Welcome back to your cell. Home sweet home.\n You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you.\nBelow the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.'
+    return 'Welcome back to your cell. Home sweet home.\n You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderately large painting picture of Kim Jong Un is on the wall in front of you.\nBelow the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.'
 
 def cheat(obj): #a cheat command intended for debugging and development. Left in for demonstration and grading purposes
     if not state.state['inventory']: #if 'cheat' entered, give the player a variety of items that make winning the game trivial and infinite inventory space

@@ -62,7 +62,7 @@ def increment_day(obj, num=1): #called when the player sleeps
     out += every_turn_universal() #handles the countdown to execution on day 31
     
     if state.state['location'] == 'cell':
-        out += rooms.cell.every_turn_cell() #adds additonal lines to be printed to the player in certain situations
+        out += rooms.cell.every_turn_cell() #adds additional lines to be printed to the player in certain situations
 
     return out 
     
@@ -84,7 +84,7 @@ def get_inventory(obj): #prints the contents of the player's inventory
             out += 's'
     return out
     
-def remove(obj): #removes any item in the player's inventory permenently
+def remove(obj): #removes any item in the player's inventory permanently
     return remove_from_inventory(obj['object'])
 
 def get(obj): #calls get inventory
