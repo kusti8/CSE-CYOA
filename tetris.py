@@ -1,5 +1,5 @@
-# from https://github.com/shkolovy/tetris-terminal
-# modified by Gustav Hansen
+#from https://github.com/shkolovy/tetris-terminal
+#we take no credit for the writing of the Tetris game code, only the in-game implementation
 """
    #####   ####  #####   ###    #   ####
      #     #       #     #  #      #
@@ -43,7 +43,7 @@ def init_colors():
     curses.init_pair(95, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_BLUE)
-    curses.init_pair(2, curses.COLOR_BLACK, 13) # 13 - pink
+    curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_RED)
     curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_YELLOW)
     curses.init_pair(4, curses.COLOR_BLACK, curses.COLOR_GREEN)
     curses.init_pair(5, curses.COLOR_BLACK, curses.COLOR_MAGENTA)

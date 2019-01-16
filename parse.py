@@ -1,30 +1,33 @@
 import state
 #import global state variables file
 
-
 def parse_input(text): 
     verbs = { #replaces verbs with a synonym if a function will understand a synonym of a verb entered in a command
         'walk': ['move', 'run', 'jog'],
         'sleep': ['dream'],
         'dig': [],
-        'examine': ['look', 'check', 'read'],
+        'examine': ['check', 'read'],
+        'look': [],
         'eat': ['drink'],
-        'get': ['retrieve', 'collect', 'take', 'get', 'grab'],
+        'get': ['retrieve', 'collect', 'take', 'get', 'grab', 'pick'],
         'move': ['displace'],
-        'remove': ['return', 'throw'],
-        'flip': [],
-        'open': [],
+        'remove': ['return', 'drop'],
+        'flip': ['turn'],
+        'open': ['unlock'],
         'go': ['goto' 'walk', 'walkto','travel', 'proceed'],
         'talk': ['converse'],
         'play': [],
-        'use': ['utilize', 'turn', 'on'],
+        'use': ['utilize', 'on'],
         'push': [],
         'leave': ['quit'],
         'shoot': ['throw'],
         'ask': ['inquire', 'request'],
-        'trade': ['barter'],
+        'trade': ['barter', 'give'],
         'cheat': [],
-        'fake': []
+        'fake': [],
+        'die': ['kill', 'commit'],
+        'wash': [],
+        'help': []
     }
     nouns = { #replaces nouns with a synonym if a function will understand a synonym of a noun entered in a command
         'cell': { #noun replacements when player is located in the cell
@@ -38,31 +41,34 @@ def parse_input(text):
             'floor': ['ground'],
             'door': [],
             'inventory': [],
-            'GameBoy': ['gameboy'],
+            'GameBoy': ['gameboy', 'Gameboy'],
             'cell': [],
             'sleep': [],
-            'hole': ['escape']
+            'hole': ['escape', 'dirt'],
+            'day': ['weekday', 'date']
         },
         'messhall': { #noun replacements when player is located in the mess hall
-            'buffet': [],
-            'library': ['books', 'book', 'shelf'],
+            'buffet': ['food'],
+            'library': ['books', 'book', 'shelf', 'bookshelf'],
             'food': [],
             'spoon': ['spork'],
             'huck': ['Huck', 'Huckleberry'],
             'gatsby': ['Gatsby'],
             'trump': ['Trump'],
             'messhall': [],
-            'drink': ['water'],
-            'tables': []
+            'drink': ['water', 'coke', 'pepsi'],
+            'tables': ['table'],
+            'him': []
         },
         'bathroom': { #noun replacements when player is located in the bathroom
             'toilet': ['bidet', 'toilette'],
             'sink': [],
-            'walls': ['wall', 'room'],
+            'walls': ['wall', 'room', 'graffiti'],
             'ceiling': ['roof'],
             'object': ['thing', 'item'],
             'mirror': [],
-            'bathroom': []
+            'bathroom': [],
+            'hands': []
         },
         'recreation': { #noun replacements when player is located in the recreation room
             'basketball': ['bball', 'ball', 'match', 'court', 'hoop', 'game'],

@@ -29,7 +29,7 @@ def get(obj): #result of a get [item] command
 def go(obj): #allows the player to go to sub locations in the mess hall
     if obj["object"] == 'buffet':
         state.state['sub_location'] = 'buffet' #goes to the buffet and describes it
-        return 'The buffet looks very appitizing compared to the kibble. There is also a place to take silverware for civilized eating, but not all inmates do.\nA drink machine labeled with recognizable soda brands is next to the silverware.'
+        return 'The buffet looks very appetizing compared to the kibble. There is also a place to take silverware for civilized eating, but not all inmates do.\nA drink machine labeled with recognizable soda brands is next to the silverware.'
     if obj["object"] == 'library':
         state.state['sub_location'] = 'library' #goes to the mini library and describes it
         return 'The books on the top shelf are labeled American classics. Copies of (Huck)leberry Finn, The Great (Gatsby), and (Trump): The Art of the Deal are all that remain.\nA sign states that you can take a book if you would like.'
@@ -46,12 +46,13 @@ def talk(obj): #allows the player to initiate a conversation with a man if locat
         "dennis",
         "bob dennis",
         "bobby d",
-        "big bobby d"
+        "big bobby d",
         "robert dennis"
     ]
     name = input("You start a conversation with a guy at the table. He asks you your name: ") #takes in a name string that the player types in
     out = ''
-    if name.lower() in dennis_options: #if the name entered is a nickname of former HTHS teacher and TSA extrodinare Mr. Robert Dennis, add clout to their inventory
+    print(name.lower().strip(), dennis_options)
+    if name.lower().strip() in dennis_options: #if the name entered is a nickname of former HTHS teacher and TSA extrodinare Mr. Robert Dennis, add clout to their inventory
         out += 'The man suddenly bows. I did not think I would meet you here. Here is some clout. Save travels, oh holy one.\n'
         out += common_actions.add_to_inventory('clout')
     else:

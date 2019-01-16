@@ -10,8 +10,6 @@ from time import sleep
 import sys
 #import all other code files for use in returning results of player commands
 
-cell.welcome() # Print an intro with instructions
-
 def printf(s): #modify print() to have "typewriter" effect 
     if s:
         for char in s:
@@ -21,6 +19,18 @@ def printf(s): #modify print() to have "typewriter" effect
         print()
     else: #print 'you cannot do that' if a function returns a blank string
         printf("You cannot do that.")
+
+printf('\nPrison Escape!') 
+printf('Copyright (c) 2018, 2019 Justin Diament and Gustav Hansen. All rights reserved.')
+printf('Licensed to CSE, High Technology High School.')
+printf('Revision 1.2 / Serial number 8675309 \n')
+#print technical information
+
+printf('Slam! A guard slams your cell door shut. Welcome to Yodok Concentration Camp, Pyongyang, North Korea. \nIt\'s going to be a long 300 years or until death, whichever comes last. Or perhaps they will execute you quickly. Who knows.')
+printf('You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you. ')
+printf('Below the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.')
+printf("\nTo play, simply type in phrases, starting with a verb and ending with a noun (like 'read schedule'). But what exactly are these commands? That's for you to figure out. Type (")
+#print an introduction that tells the player the beginning of the game's storyline 
 
 def cell_options(obj): #determines which file to look through for command results based on player location in-game
     if state.state['location'] == 'cell':
@@ -39,6 +49,7 @@ while not state.state['dead']: #while the player is still alive (ends the game i
     i = input('> ')
     if i:
         obj = parse.parse_input(i) #sends input to the parser to check for commands that mean the same thing
+        p
         if not obj['object'] or not obj['action']:
             printf("You cannot do that.") #print 'you cannot do that' if what they enter is not a valid command
             continue

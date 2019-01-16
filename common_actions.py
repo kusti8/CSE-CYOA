@@ -1,6 +1,10 @@
 import state
 import collections
 import rooms.cell
+import rooms.bathroom
+import rooms.corridor
+import rooms.messhall
+import rooms.recreation
 #import global state variables, collections library, and the cell location code
 
 days = { #list of weekdays and their corresponding numbers
@@ -20,15 +24,15 @@ other_inventory_names = { #list of alternate names for some items that can be ad
 }
 
 def add_to_inventory(item): #adds an item to inventory or tells the player that they cannot do so if they are out of inventory space 
-    if item == 'backpack':
-        state.state['inventory_limit'] = 6
     if len(state.state['inventory']) >= state.state['inventory_limit']:
         return "Sorry, but you are out of inventory space."
     else:
+        if item == 'backpack':
+            state.state['inventory_limit'] = 6
         state.state['inventory'].append(item)
         return "You now have " + item
 
-def remove_from_inventory(item): #rempves an item from the player's inventory unless it is a backpack, which cannot be removed
+def remove_from_inventory(item): #removes an item from the player's inventory unless it is a backpack, which cannot be removed
     if item == 'backpack':
         return 'No, no no. Not today.'
     if item in state.state['inventory']:
@@ -86,6 +90,8 @@ def remove(obj): #removes any item in the player's inventory permenently
 def get(obj): #calls get inventory
     if obj['object'] == 'inventory':
         return get_inventory(obj)
+    if obj['object'] == 'day':
+        return "It is " + get_weekday(state.state['day']) + ", day " + str(state.state['day']) 
         
 def eat(obj): #allows the player to eat food out of their inventory if they have any
     if 'food' in state.state['inventory']:
@@ -113,10 +119,44 @@ def examine(obj): #allows inventory items to be examined at any time if the play
     if obj['object'] == 'backpack' and 'backpack' in state.state['inventory']:
         return 'Used to store things, giving you more inventory space. Seems like something you should hold on to.'
     
+def die(obj): #If the player wants to die, kill them
+    return game_quit()
     
+def kill(obj): #If the player wants to die, kill them
+    return die(obj)
+    
+def look(obj): #Reprints the room intro/welcome
+    if state.state['location'] == 'cell':
+        rooms.cell.welcome()
+        return ' '
+    elif state.state['location'] == 'bathroom':
+        return rooms.bathroom.welcome()
+    elif state.state['location'] == 'corridor':
+        return rooms.corridor.welcome()
+    elif state.state['location'] == 'messhall':
+        return rooms.messhall.welcome()
+    elif state.state['location'] == 'recreation':
+        return rooms.recreation.welcome()
+
+def help(obj): #lists the game's fundamental commands
+    out = "Here are some common commands you can use:\n"
+    out += """get inventory: List objects the player’s inventory contains (max two without a backpack item, six with a backpack)
+get weekday: returns the in-game day of the week 
+get [item]: adds an item currently accessible to the player to their inventory
+remove [item]: removes an item from the player’s inventory permanently
+examine [item]: provides additional information on an item currently accessible to the player or in their inventory
+leave [location]: will return from any other room to your prison cell
+sleep: advance to the next day
+"""
+    return out
+
 common_options = { #connects the player's entered commands to the parser to account for different terms that mean the same thing
     'get': get,
     'remove': remove,
     'eat': eat,
-    'examine': examine
+    'examine': examine,
+    'die': die,
+    'kill': kill,
+    'look': look,
+    'help': help
 }

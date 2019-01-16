@@ -5,33 +5,7 @@ import rooms.bathroom
 import rooms.corridor
 import rooms.recreation
 import common_actions
-import sys
-from time import sleep
 #import code handling actions the player can do anywhere and global state variables, as well as all rooms the player can go to from the cell
-
-def printf(s): #modify print() to have "typewriter" effect 
-    if s:
-        for char in s:
-            print(char, end='')
-            sys.stdout.flush()
-            sleep(0.02)
-        print()
-    else: #print 'you cannot do that' if a function returns a blank string
-        printf("You cannot do that.")
-
-def welcome():
-    printf('\nPrison Escape!') 
-    printf('Copyright (c) 2018, 2019 Justin Diament and Gustav Hansen. All rights reserved.')
-    printf('Licensed to CSE, High Technology High School.')
-    printf('Revision 1.2 / Serial number 8675309 \n')
-    #print technical information
-    
-    printf('Slam! A guard slams your cell door shut. Welcome to Yodok Concentration Camp, Pyongyang, North Korea. \nIt\'s going to be a long 300 years or until death, whichever comes last. Or perhaps they will execute you quickly. Who knows.')
-    printf("It is Monday, day 1.")
-    printf('You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you. ')
-    printf('Below the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.')
-    printf("\nTo play, simply type in phrases, starting with a verb and ending with a noun (like 'read schedule'). But what exactly are these commands? That's for you to figure out. Type (help) for a short list of fundamental commands.")
-    #print an introduction that tells the player the beginning of the game's storyline 
 
 def every_turn_cell(): #things that can possibly occur after the player sleeps
     out = ''
@@ -123,7 +97,7 @@ def open_item(obj): #results if player attempts to open the door
     if obj['object'] == 'door' and 'key' not in state.state['inventory']: #if the player does not have a key, inform them that the door is locked
         return "Cannot open the door. It is locked"
     elif obj['object'] == 'door' and 'key' in state.state['inventory']: #if the player has a key, open the door and enter the corridor
-        state.state['location'] = 'corridor'
+        state.state['location'] == 'corridor'
         return rooms.corridor.welcome()
 
 def welcome_back(): #informs the player that they have returned to their cell
@@ -131,7 +105,7 @@ def welcome_back(): #informs the player that they have returned to their cell
     return 'Welcome back to your cell. Home sweet home.'
 
 def cheat(obj): #a cheat command intended for debugging and development. Left in for demonstration and grading purposes
-    if not state.state['inventory']: #if 'cheat' entered, give the player a variety of items that make winning the game trivial and infinate inventory space
+    if not state.state['inventory']: #if 'cheat' entered, give the player a variety of items that make winning the game trivial and infin
         state.state['inventory'] = ['Trump: The Art of the Deal', 'clout', 'key', 'GameBoy', 'backpack', 'spoon']
         state.state['inventory_limit'] = 1000 
     if obj['object'] in ['recreation', 'cell', 'bathroom', 'messhall', 'corridor']: #if cheat [location] entered, teleport the player to a room of their choice
@@ -143,11 +117,11 @@ def fake(obj): #fake sleep command that the player gains the ability to use afte
         state.state['night'] = True #sets time state to night
         return 'It is now 2:00 am. Type (sleep) to wake up at your normal time'
 
-def use_key(obj): ##results if player attempts to open the door 
-    if obj['object'] == 'key' and 'key' not in state.state['inventory']: #if the player does not have a key, inform them that the door is locked
+def use_key(obj): 
+    if obj['object'] == 'key' and 'key' not in state.state['inventory']:
         return "Cannot open the door. It is locked"
-    elif obj['object'] == 'key' and 'key' in state.state['inventory']: #if the player has a key, open the door and enter the corridor
-        state.state['location'] = 'corridor'
+    elif obj['object'] == 'key' and 'key' in state.state['inventory']:
+        state.state['location'] == 'corridor'
         return rooms.corridor.welcome()
 
 cell_options = {  #connects the player's entered commands to the parser to account for different terms that mean the same thing

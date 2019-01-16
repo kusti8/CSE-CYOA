@@ -11,6 +11,7 @@ def welcome(): #print a description of the corridor when the player first enters
         out += '\nIt is dark and difficult to see. There seems to be very few guards during the night. It might be difficult to avoid them in the dark, however.\nWant to (go back) to your cell or (proceed forward) down the corridor?'
     if state.state['night'] and 'lantern' in state.state['inventory']: #adds to the welcome message if the player exits their cell during the night AND has a lantern in their inventory
         out += '\nLuckily, you have your trusty lantern. You turn it on and the corridor suddenly becomes a whole lot brighter. This might be your best chance at escaping! \nWant to (go back) to your cell or (proceed forward) down the corridor?'
+    return out
 
 def leave(obj): #returns the player to their cell
     return rooms.cell.welcome_back()
