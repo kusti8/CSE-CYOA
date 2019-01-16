@@ -5,42 +5,41 @@ import rooms.bathroom
 import rooms.corridor
 import rooms.recreation
 import common_actions
+#import code handling actions the player can do anywhere and global state variables, as well as all rooms the player can go to from the cell
 
-################ACTION FUNCTIONS################
-
-def every_turn_cell():
+def every_turn_cell(): #things that can possibly occur after the player sleeps
     out = ''
-    if state.state['dead']:
+    if state.state['dead']: #returns nothing if the player has lost the game already
         return ''
-    if 'A very special painting' in state.state['inventory']:
+    if 'A very special painting' in state.state['inventory']: #kills the player if they do not replace the painting as instructed
         out += '\nA guard notices you have removed and disrespected the painting of His Greatness Kim Jong Un. You are killed immediately. \n\n'
         out += common_actions.game_quit()
-    if state.state['bowl_flipped'] and common_actions.get_weekday(state.state['day']) == 'Friday':
+    if state.state['bowl_flipped'] and common_actions.get_weekday(state.state['day']) == 'Friday': #gives the player a hint on Friday if they flip their bowl over as the note says to 
       out += '\nA very short, sickly looking man walks by your cell and whispers something:\n\t'
       out += '"An item, you need. Go through the ground, you must."'
-      state.state ['bowl_flipped'] == False
-    if common_actions.get_weekday(state.state['day']) == 'Tuesday' or common_actions.get_weekday(state.state['day']) == 'Thursday':
-        state.state['location'] = 'messhall'
+      state.state ['bowl_flipped'] == False #turns the bow flipped state variable to False so that this does not occur again on the next Friday
+    if common_actions.get_weekday(state.state['day']) == 'Tuesday' or common_actions.get_weekday(state.state['day']) == 'Thursday': #sends the player to the mess hall on Tuesdays and Thursdays
+        state.state['location'] = 'messhall' 
         out += '\nA guard comes to your cell and brings you to the mess hall.'
-        out += rooms.messhall.welcome()
-    if common_actions.get_weekday(state.state['day']) == 'Monday' or common_actions.get_weekday(state.state['day']) == 'Wednesday':
+        out += rooms.messhall.welcome() #calls the welcome message in the mess hall code
+    if common_actions.get_weekday(state.state['day']) == 'Monday' or common_actions.get_weekday(state.state['day']) == 'Wednesday': #sends the player to the bathroom on Mondays and Wednesdays
         state.state['location'] = 'bathroom'
         out += '\nA guard comes to your cell and brings you to the bathroom.'
-        out += rooms.bathroom.welcome()
-    if common_actions.get_weekday(state.state['day']) == 'Saturday' or common_actions.get_weekday(state.state['day']) == 'Sunday':
+        out += rooms.bathroom.welcome() #calls the welcome message in the bathroom code
+    if common_actions.get_weekday(state.state['day']) == 'Saturday' or common_actions.get_weekday(state.state['day']) == 'Sunday': #sends the player to the recreation room on Saturdays and Sundays
         state.state['location'] = 'recreation'
         out += '\nA guard comes to your cell and brings you to recreation.'
-        out += rooms.recreation.welcome()
+        out += rooms.recreation.welcome() #calls the welcome message in the recreation code
     return out
 
 
-def dig_hole(obj):
+def dig_hole(obj): #allows the player to attempt to dig a hole in the cell floor
     out = ''
-    if 'spoon' not in state.state['inventory']:
-        response = input('Are you sure you want to do this? It is estimated to take around 3 months? Which is it: (yes) or (no)?')
-        if response.lower() != 'y' and response.lower() != 'yes':
-            return ''
-        state.state['last_day_eaten'] = state.state['day']+90
+    if 'spoon' not in state.state['inventory']: #promps the player that attempting to dig a hole with their bare hands might get them executed
+        response = input('Are you sure you want to do this? It is estimated to take around 3 months. You might be executed by then. Which is it: (yes) or (no)?')
+        if response.lower() != 'y' and response.lower() != 'yes': #
+            return 'You chose not to dig a hole.' #returns a message if the player chooses not to dig a hole
+        state.state['last_day_eaten'] = state.state['day']+90 #removes th
         out += common_actions.increment_day(obj,90)
         out += '\n'
     else:
