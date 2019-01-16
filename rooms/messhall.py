@@ -9,6 +9,7 @@ def welcome(): #print a description of the mess hall when the player first enter
 
 def get(obj): #result of a get [item] command
     out = ''
+    print(obj)
     if obj['object'] == 'food' and state.state['sub_location'] == 'buffet':
         out += common_actions.add_to_inventory('food') #adds food to inventory if located at buffet
     if obj['object'] == 'spoon' and state.state['sub_location'] == 'buffet':
@@ -27,7 +28,7 @@ def get(obj): #result of a get [item] command
     return out
 
 def go(obj): #allows the player to go to sub locations in the mess hall
-    if obj["object"] == 'buffet':
+    if obj["object"] == 'buffet' or obj["object"] == 'food':
         state.state['sub_location'] = 'buffet' #goes to the buffet and describes it
         return 'The buffet looks very appetizing compared to the kibble. There is also a place to take silverware for civilized eating, but not all inmates do.\nA drink machine labeled with recognizable soda brands is next to the silverware.'
     if obj["object"] == 'library':

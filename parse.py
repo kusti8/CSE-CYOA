@@ -48,7 +48,7 @@ def parse_input(text):
             'day': ['weekday', 'date']
         },
         'messhall': { #noun replacements when player is located in the mess hall
-            'buffet': ['food'],
+            'buffet': [],
             'library': ['books', 'book', 'shelf', 'bookshelf'],
             'food': [],
             'spoon': ['spork'],
