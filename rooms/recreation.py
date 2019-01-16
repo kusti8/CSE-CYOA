@@ -124,7 +124,7 @@ def play(obj):
     if state.state['sub_location'] != 'old_man':
         return
     score = tetris.main()
-    if score > 400:
+    if score and score > 400:
         out = '"Congratulations on playing a great game," he says. "Here\'s some clout."'
         out += common_actions.add_to_inventory('clout')
         return out

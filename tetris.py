@@ -1,3 +1,5 @@
+# from https://github.com/shkolovy/tetris-terminal
+# modified by Gustav Hansen
 """
    #####   ####  #####   ###    #   ####
      #     #       #     #  #      #
@@ -214,6 +216,7 @@ def main():
 
             if not game_board.is_game_over():
                 if not pause:
+                    draw_status_window(status_window)
                     if time.time() - start >= 1 / game_board.level:
                         game_board.move_block("down")
                         start = time.time()
