@@ -28,7 +28,7 @@ def welcome():
     
     printf('Slam! A guard slams your cell door shut. Welcome to Yodok Concentration Camp, Pyongyang, North Korea. \nIt\'s going to be a long 300 years or until death, whichever comes last. Or perhaps they will execute you quickly. Who knows.')
     printf("It is Monday, day 1.")
-    printf('You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you. ')
+    printf('You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderately large painting picture of Kim Jong Un is on the wall in front of you. ')
     printf('On the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.')
     printf("\nTo play, simply type in phrases, starting with a verb and ending with a noun (like 'read schedule'). But what exactly are these commands? That's for you to figure out. Type (help) for a short list of fundamental commands.")
     #print an introduction that tells the player the beginning of the game's storyline 
@@ -128,11 +128,7 @@ def open_item(obj): #results if player attempts to open the door
 
 def welcome_back(): #informs the player that they have returned to their cell
     state.state['location'] = 'cell' #sets the global location variable to 'cell'
-<<<<<<< HEAD
-    return 'Welcome back to your cell. Home sweet home.\n You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderatly large painting picture of Kim Jong Un is on the wall in front of you.\nOn the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.'
-=======
-    return 'Welcome back to your cell. Home sweet home.\n You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderately large painting picture of Kim Jong Un is on the wall in front of you.\nBelow the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.'
->>>>>>> refs/remotes/origin/master
+    return 'Welcome back to your cell. Home sweet home.\n You face the back wall of the cell. An undersized cot is to your right, on the ground. A moderately large painting picture of Kim Jong Un is on the wall in front of you.\nOn the wall the left is a weekly schedule, written in English. Next to that on the floor are bowls of food and water. The floor is well-packed dirt.'
 
 def cheat(obj): #a cheat command intended for debugging and development. Left in for demonstration and grading purposes
     if not state.state['inventory']: #if 'cheat' entered, give the player a variety of items that make winning the game trivial and infinite inventory space

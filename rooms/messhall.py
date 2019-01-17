@@ -9,7 +9,6 @@ def welcome(): #print a description of the mess hall when the player first enter
 
 def get(obj): #result of a get [item] command
     out = ''
-    print(obj)
     if obj['object'] == 'food' and state.state['sub_location'] == 'buffet':
         out += common_actions.add_to_inventory('food') #adds food to inventory if located at buffet
     if obj['object'] == 'spoon' and state.state['sub_location'] == 'buffet':

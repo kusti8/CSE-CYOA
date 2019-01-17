@@ -37,8 +37,8 @@ def get(obj): #result of a get [item] command
     if obj['object'] == 'ceiling': #pushes ceiling if the player tries to 'get' the low tile
         return push(obj)
     if obj['object'] == 'object' and state.state['ceiling_pushed']:  
-        #if the celing has been pushed, adds the backpack and clout hidden there to their inventory
-        out = 'You pull out the objet. It is a Supreme brand backpack! The backpack also gives you clout, by the sheer essence of being Supreme.' #response to player upon getting the backpack
+        #if the ceiling has been pushed, adds the backpack and clout hidden there to their inventory
+        out = 'You pull out the object. It is a Supreme brand backpack! The backpack also gives you clout, by the sheer essence of being Supreme.' #response to player upon getting the backpack
         out += common_actions.add_to_inventory('backpack') + '\n'
         out += common_actions.add_to_inventory('clout') + '\n'
         return out

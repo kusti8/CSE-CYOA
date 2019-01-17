@@ -16,7 +16,7 @@ def printf(s): #modify print() to have "typewriter" effect
 
 def welcome():  #print a description of the recreation room when the player first enters and set their sub location in the room to 'foyer' (nowhere)
     state.state['sub_location'] = 'foyer'
-    return "\n\nWelcome to recreation! There's a group of guys playing pickup basketball to your right. \nA ways away in front of you is a few benches. The only people there is are two weird old men. To the left is a group of strong looking guys huddled in the coner. You may ask to (leave) to go back to your cell at any time."
+    return "\n\nWelcome to recreation! There's a group of guys playing pickup basketball to your right. \nA ways away in front of you is a few benches. The only people there is are two weird old men. To the left is a group of strong looking guys huddled in the corner. You may ask to (leave) to go back to your cell at any time."
 
 def leave(obj): #returns the player to their cell
     return rooms.cell.welcome_back()
@@ -48,7 +48,7 @@ def go(obj): #result of a go [location] command
             if your_answers == correct_answers: #if the player's answers are all correct, give them the ability to fake sleep
                 state.state['fake_sleep'] = True 
                 return 'The man\'s voice changes to a normal tone and he stops attacking you with questions. \nHe says, "you seem knowledgeable about... stuff. Here\'s a tip. Try faking sleep some time and snooping around at night when the guards are tired. It might help you out.\nYou have gained the ability to fake sleep! Type (fake sleep) rather than (sleep) to pretend until 2:00 AM."'
-            else: #if one or more answeres are wrong, call the player a failure.
+            else: #if one or more answers are wrong, call the player a failure.
                 return 'The man stares at you with scorn. "Do you even have a 55 GPA? Try again fool."\nGo back to the benches to try the quiz again.'
         if dec == 'neither' or dec == 'back' or dec == 'no':
             state.state['sub_location'] = 'foyer'
@@ -56,7 +56,7 @@ def go(obj): #result of a go [location] command
     if obj['object'] == 'guys':
         if 'clout' in state.state['inventory']:
             state.state['sub_location'] = 'market'
-            out = "Turns out this is the prison black market. One man openes his jacket to reveal a few items:\n"
+            out = "Turns out this is the prison black market. One man opens his jacket to reveal a few items:\n"
             for item in state.state['shop_inventory']:
                 out += item + '\n'
             out+= 'Request an item to know what the market wants in return for it'
@@ -65,11 +65,11 @@ def go(obj): #result of a go [location] command
             state.state['sub_location'] = 'foyer'
             return "You don't have enough clout to visit the black market. Find some clout and try again. The guys push you back to the center of the rec hall."
 
-def get(obj): #if the player tries to get a basketball and is located at the basktball court, add basketball to inventory
+def get(obj): #if the player tries to get a basketball and is located at the basketball court, add basketball to inventory
     out = ''
     if obj['object'] == 'basketball' and state.state['sub_location'] == 'basketball':
         out += common_actions.add_to_inventory('ball')
-        out += '\nOne of the ball players shrugs and pulls an entire new backetball out of his pants pocket. Don\'t question it.'
+        out += '\nOne of the ball players shrugs and pulls an entire new basketball out of his pants pocket. Don\'t question it.'
     return out
 
 def shoot(obj): #if the player tries to shoot hoops and has a basketball, avail them about their lack of ball skills
@@ -107,13 +107,13 @@ def trade(obj):
         if 'Sorry, but you are out of inventory space' not in out:
             state.state['shop_inventory'].remove('lantern')  #removes lantern from shop inventory
     elif obj['object'] and obj['object'].lower() == 'gameboy' and state.state['sub_location'] == 'market' and 'GameBoy' in state.state['inventory']: #complete a trade for the key if the player offers the GameBoy
-        out += 'The men tell you that this key will open any cell door, but you\'ll just be shot by the guards if you do it during the day unrer normal circumstances. '
+        out += 'The men tell you that this key will open any cell door, but you\'ll just be shot by the guards if you do it during the day under normal circumstances. '
         out += common_actions.add_to_inventory('key') + '.\n'
         if 'Sorry, but you are out of inventory space' not in out:
             out += common_actions.remove_from_inventory('GameBoy') + '.\n'
             state.state['shop_inventory'].remove('key') #removes key from shop inventory
     elif obj['object'] == 'trump' and state.state['sub_location'] == 'market' and 'Trump: The Art of the Deal' in state.state['inventory']:  #complete a trade for the backpack if the player offers the Trump book
-        out += 'The generic backpack is worn down, but expands your inventory just as effectivly as a designer bag. '
+        out += 'The generic backpack is worn down, but expands your inventory just as effectively as a designer bag. '
         out += common_actions.add_to_inventory('backpack') + '.\n' 
         if 'Sorry, but you are out of inventory space' not in out:
             out += common_actions.remove_from_inventory('trump') + '.\n'
