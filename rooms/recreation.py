@@ -136,11 +136,11 @@ def play(obj): #results of a play command
     if obj['object'] == 'GameBoy':
         return "The only game on the gameboy is pong. You play it a bit, but you've got more important things to do."
     score = tetris.main()
-    if score and score > 100: #if the player scores more than 400 points in Tetris, give them clout
+    if score and score > 100: #if the player scores more than 100 points in Tetris, give them clout
         out = '"Congratulations on playing a great game," he says. "Here\'s some clout."'
         out += common_actions.add_to_inventory('clout')
         return out
-    else: #if the player fails to reach 400 points, tell them to try again
+    else: #if the player fails to reach 100 points, tell them to try again
         return 'The man shrugs and frowns. "I guess kids these days just don\'t know how to play tetris," he mutters. \nEnter (play) if you wish to try again.'
 
 recreation_options = { #connects the player's entered commands to the parser to account for different terms that mean the same thing
