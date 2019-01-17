@@ -1,2 +1,2 @@
 # CSE-CYOA
-See instructions in Google Classroom for assistance
+See instructions on the submitted presentation for assistance

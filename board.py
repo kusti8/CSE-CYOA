@@ -1,3 +1,5 @@
+#from https://github.com/shkolovy/tetris-terminal
+#we take no credit for the writing of the Tetris game code, only the in-game implementation
 """
 ====T Block====
 

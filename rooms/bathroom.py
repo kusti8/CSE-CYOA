@@ -31,12 +31,13 @@ def examine(obj): #possible results of an examine [item] command
 def push(obj): #result of a push ceiling command
     if obj['object'] == 'ceiling': 
         state.state['ceiling_pushed'] = True #set the state of the ceiling to pushed so that the item inside can be accessed
-        return 'The low ceiling gives way and reveals a secret crevice above your head. There appears to be an object in the shadows of the crevice.' #response to player upon pushing ceiling
+        return 'The low ceiling gives way and reveals a secret crevice above your head. There appears to be an object in the shadows of the crevice.'  #response to player upon pushing ceiling
       
 def get(obj): #result of a get [item] command
     if obj['object'] == 'ceiling': #pushes ceiling if the player trys to 'get' the low tile
         return push(obj)
-    if obj['object'] == 'object' and state.state['ceiling_pushed']:  #if the celing has been pushed, adds the backpack and clout hidden there to their inventory
+    if obj['object'] == 'object' and state.state['ceiling_pushed']:  
+        #if the celing has been pushed, adds the backpack and clout hidden there to their inventory
         out = 'You pull out the objet. It is a Supreme brand backpack! The backpack also gives you clout, by the sheer essence of being Supreme.' #response to player upon getting the backpack
         out += common_actions.add_to_inventory('backpack') + '\n'
         out += common_actions.add_to_inventory('clout') + '\n'
