@@ -3,13 +3,13 @@ import state
 
 def parse_input(text): 
     verbs = { #replaces verbs with a synonym if a function will understand a synonym of a verb entered in a command
-        'walk': ['move', 'run', 'jog'],
+        'walk': ['run', 'jog'],
         'sleep': ['dream'],
         'dig': [],
         'examine': ['check', 'read'],
         'look': [],
         'eat': ['drink'],
-        'get': ['retrieve', 'collect', 'take', 'get', 'grab', 'pick'],
+        'get': ['retrieve', 'collect', 'take', 'grab', 'pick'],
         'move': ['displace'],
         'remove': ['return', 'drop'],
         'flip': ['turn'],
@@ -48,7 +48,7 @@ def parse_input(text):
             'day': ['weekday', 'date']
         },
         'messhall': { #noun replacements when player is located in the mess hall
-            'buffet': ['food'],
+            'buffet': [],
             'library': ['books', 'book', 'shelf', 'bookshelf'],
             'food': [],
             'spoon': ['spork'],
